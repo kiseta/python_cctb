@@ -62,3 +62,26 @@ __author__ = 'tk'
 # }
 #
 # print(f'Michael is {ages["michael"]} years old.')
+
+# 2.Program to check the number from the given range
+# Program requirements
+# Check if entry is an int
+# Check if the entry is in range
+# Keep prompting to enter a number until the correct value is entered
+
+numbers = None
+invalid_flag = True
+while invalid_flag:
+    try:
+        numbers = int(input('Please enter a number from 1 to 10: '))
+        while 0 < numbers <= 10:
+            print(f'All good. Your number {numbers} is from 1 to 10.')
+            invalid_flag = False
+            break
+        else:
+            print(f'Your number {numbers} is not from a given range. Please try again!')
+            invalid_flag = True
+    except ValueError as e:
+        print(f'You entered non integer value. Please try again!')
+        print(f'Error message: ', e)
+        invalid_flag = True
