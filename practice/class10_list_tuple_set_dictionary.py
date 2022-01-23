@@ -6,7 +6,6 @@ __author__ = 'tk'
 # list is a collection that is ordered and changeable
 list_of_something=[] # make a list with square brackets
 
-
 list_of_names = ['Jack',  'Sparrow',  'Nina',  'Bruce',  'Justin',  'Tatyana']
 print(list_of_names)
 
@@ -31,7 +30,7 @@ print(len(list_of_names))
 
 # ---------------------------------------------------------
 # TUPLE
-# Tuples are unchangeable, you cannot change,  add, remove items from the list.
+# Tuples are unchangeable, you cannot change,  add, remove items from the tuple.
 # It's possible to convert tuple into a list, then make  changes and then convert it back tuple
 # array of constants
 # Tuple is a collection that is ordered and unchangeable.
@@ -45,8 +44,11 @@ print(yummy_tuple[1])
 yummy_list = list(yummy_tuple)
 print(yummy_list)
 
-
-
+yummy_list.append('nectarine')
+print(yummy_list)
+yummy_tuple = tuple(yummy_list)
+print(yummy_tuple)
+print('----------------------')
 # SET
 # Set is unordre, unchangable and unindexed. No duplicate memebers
 # Sets are written in curly brackers
