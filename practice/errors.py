@@ -18,22 +18,42 @@ __author__ = 'tk'
 
 # 2.Program to check the number from the given range
 # Program requirements
-# Check if entry is an int
+# Check if entry is an intteger
 # Check if the entry is in range
 # Keep prompting to enter a number until the correct value is entered
 
+# solution 2.1
 # numbers = None
-# while type(numbers) != int:
+# invalid_flag = True
+# while invalid_flag:
 #     try:
-#         numbers = int(input('Please enter any integer number from 1 to 10: '))
-#         while 0 <= numbers <= 10:
-#             print(f'All good. Your number is from the given range')
+#         numbers = int(input('Please enter a number from 1 to 10: '))
+#         while 0 < numbers <= 10:
+#             print(f'All good. Your number {numbers} is from 1 to 10.')
+#             invalid_flag = False
 #             break
 #         else:
 #             print(f'Your number {numbers} is not from a given range. Please try again!')
+#             invalid_flag = True
 #     except ValueError as e:
 #         print(f'You entered non integer value. Please try again!')
 #         print(f'Error message: ', e)
+#         invalid_flag = True
+
+# solution 2.2
+numbers = None
+valid_flag = False
+while not valid_flag:
+    try:
+        numbers = int(input('Please enter any integer number from 1 to 10: '))
+        while 0 < numbers <= 10:
+            print(f'All good. Your number {numbers} is from 1 to 10.')
+            valid_flag = True
+            break
+        else:
+            print(f'Your number {numbers} is not from a given range. Please try again!')
+    except ValueError as e:
+        print(f'You entered non integer value. Please try again! Error message: ', e)
 
 # 3. Program where we can try to divide by 0.
 
@@ -69,19 +89,3 @@ __author__ = 'tk'
 # Check if the entry is in range
 # Keep prompting to enter a number until the correct value is entered
 
-numbers = None
-invalid_flag = True
-while invalid_flag:
-    try:
-        numbers = int(input('Please enter a number from 1 to 10: '))
-        while 0 < numbers <= 10:
-            print(f'All good. Your number {numbers} is from 1 to 10.')
-            invalid_flag = False
-            break
-        else:
-            print(f'Your number {numbers} is not from a given range. Please try again!')
-            invalid_flag = True
-    except ValueError as e:
-        print(f'You entered non integer value. Please try again!')
-        print(f'Error message: ', e)
-        invalid_flag = True
