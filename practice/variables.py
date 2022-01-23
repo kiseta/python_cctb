@@ -100,30 +100,4 @@ print('Click \'Submit\' button')
 # AS Additions and Substactions, left to right
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Data types / objects in Python
-list_of_names = ['Jack',  'Sparrow',  'Nina',  'Bruce',  'Justin',  'Tatyana']
-# LIST - List or Array is an object to store multiple values. Starts with zero (0)
-# list is a collection that is ordered and changeable
-
-print(list_of_names)
-
-# read values by calling a specific index
-print(list_of_names[0])
-
-# update value in the list
-list_of_names[0] = 'George'
-print(list_of_names)
-
-# append
-list_of_names.append('Nona')
-print(list_of_names)
-
-# remove value
-list_of_names.pop(0)
-print(list_of_names)
-
-# clear
-#list_of_names.clear()
-print(len(list_of_names))

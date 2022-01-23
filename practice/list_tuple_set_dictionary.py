@@ -1,8 +1,35 @@
 __author__ = 'tk'
-# LIST
+# Data types / objects in Python
 
+# LIST
+# LIST - List or Array is an object to store multiple values. Starts with zero (0)
+# list is a collection that is ordered and changeable
 list_of_something=[] # make a list with square brackets
 
+
+list_of_names = ['Jack',  'Sparrow',  'Nina',  'Bruce',  'Justin',  'Tatyana']
+print(list_of_names)
+
+# read values by calling a specific index
+print(list_of_names[0])
+
+# update value in the list
+list_of_names[0] = 'George'
+print(list_of_names)
+
+# append
+list_of_names.append('Nona')
+print(list_of_names)
+
+# remove value
+list_of_names.pop(0)
+print(list_of_names)
+
+# clear
+#list_of_names.clear()
+print(len(list_of_names))
+
+# ---------------------------------------------------------
 # TUPLE
 # Tuples are unchangeable, you cannot change,  add, remove items from the list.
 # It's possible to convert tuple into a list, then make  changes and then convert it back tuple
