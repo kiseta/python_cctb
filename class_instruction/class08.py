@@ -1,12 +1,12 @@
 # Displaying strings
 print('Hello World')  # Display Hello World
-print('Today is a wonderful day ever!')  # Display cool message
-print('Hey my dear team!')  # Display message about my team
-print('My temperature now is 37.5')  # Display my current body's temperature
+print('Today is the most wonderful day ever!')  # Display cool message
+print('Hey my dear students!')  # Display message about my team
+print('My temperature now is 36.6')  # Display my current body's temperature
 print('Cool! Very nice!')  # Display just very cool message
 
 # Display integers
-print(38)  # Display my age
+print(38)  # Display your age
 print(2022)  # Display current year
 print(2021)  # Display previous year
 print(1983)  # Display my YOB

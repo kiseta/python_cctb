@@ -1,6 +1,6 @@
 __author__ = 'tk'
 import time
-from time import sleep, asctime
+from time import sleep
 
 current_date = time.asctime()
 print('~*~*~*~*~*~*~*~*~*~*~*~')

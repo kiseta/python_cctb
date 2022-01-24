@@ -9,9 +9,10 @@ __author__ = 'tk'
 # EXAMPLE 1 List IndexError
 try:
     twilight_saga = ['Twilight', 'New Moon', 'Eclipse', 'Breaking Dawn']  # make a list with square brackets
-    print('--------- #1 correct ------------')
-    print(f'Book #4: ', twilight_saga[3]) # print 4TH item from the list using zero based index
-    print('--------- #1 error ------------')
+    print(twilight_saga)
+    print('--------- correct - twilight_saga[3] ------------')
+    print(twilight_saga[3]) # print 4TH item from the list using zero based index
+    print('--------- error - twilight_saga[4] ------------')
     print(twilight_saga[4])  # print 4TH item from the list - generate error
 except IndexError as ie:
     print(f'IndexError: {ie}, check your item index')
