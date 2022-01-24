@@ -4,6 +4,7 @@ __author__ = 'tk'
 # LIST
 # LIST - List or Array is an object to store multiple values. Starts with zero (0)
 # list is a collection that is ordered and changeable
+# Lists are written with square [] brackets
 list_of_something=[] # make a list with square brackets
 
 
@@ -32,11 +33,12 @@ print(len(list_of_names))
 # ---------------------------------------------------------
 # TUPLE
 # Tuples are unchangeable, you cannot change,  add, remove items from the list.
-# It's possible to convert tuple into a list, then make  changes and then convert it back tuple
+# It's possible to convert tuple into a list, then make changes and then convert it back to tuple
 # array of constants
 # Tuple is a collection that is ordered and unchangeable.
 # Allow duplicate members
 # Tuples are used to store multiple items in a single variable
+# ----------------------------------------------------------------
 # Tuples are written with round () brackets
 
 yummy_tuple = ('apple', 'banana', 'mango', 'cherry', 'watermelon')
@@ -49,7 +51,7 @@ print(yummy_list)
 
 # SET
 # Set is unordre, unchangable and unindexed. No duplicate memebers
-# Sets are written in curly brackers
+# Sets are written in {} curly braces
 
 yummy_set = {'apple', 'banana', 'mango', 'cherry', 'watermelon'}
 print(yummy_set)
@@ -59,7 +61,7 @@ for ys in yummy_set:
 
 # DICTIONARY
 # Dictionary is a collection which is ordered, changeable, no duplicate members
-#
+# Dictionary are written in {} curly braces, key: value pairs separated by colon :
 music_technica ={
     'brand': 'sony',
     'type': 'receiver',
