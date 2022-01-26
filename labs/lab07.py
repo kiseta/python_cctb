@@ -30,7 +30,7 @@ print('Moons\'s diameter to distance from Earth ratio: ' + '%.2f' % moon_ds_to_d
 
 # 3. Display a combination of integers and strings in one line
 year = 2014
-name = 'Angelina Jordan'''
+name = 'Angelina Jordan'
 place = 1
 show = '\'Norway Got Talent\''
 age = 5

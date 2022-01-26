@@ -22,29 +22,42 @@ __author__ = 'tk'
 # display_message(5)
 
 
-def calc(a, b, sign):
-    if sign == '+':
-        print(f'The result of addition {a + b}')
-    elif sign == '-':
-        print(f'The result of substrcation {a - b}')
-    elif sign == '*':
-        print(f'The result of multiplication {a * b}')
-    elif sign == '/':
-        print(f'The result of float division {a / b}')
-    elif sign == '//':
-        print(f'The result of interger division {a // b}')
-    else:
-        print(f'Something is wrong. Please check your arguments {a, b, sign}')
+# def calc(a, b, sign):
+#     if sign == '+':
+#         print(f'The result of addition {a + b}')
+#     elif sign == '-':
+#         print(f'The result of substrcation {a - b}')
+#     elif sign == '*':
+#         print(f'The result of multiplication {a * b}')
+#     elif sign == '/':
+#         print(f'The result of float division {a / b}')
+#     elif sign == '//':
+#         print(f'The result of interger division {a // b}')
+#     else:
+#         print(f'Something is wrong. Please check your arguments {a, b, sign}')
+#
+# # Addition
+# calc(5, 5, input(f'Enter sign operator: '))
+# # Subtraction
+# calc(5, 5, input(f'Enter sign operator: '))
+# # Multiplication
+# calc(5, 5, input(f'Enter sign operator: '))
+# # Division
+# calc(5, 5, input(f'Enter sign operator: '))
+# # Division
+# calc(5, 5, input(f'Enter sign operator: '))
 
-# Addition
 
-calc(5, 5, input(f'Enter sign operator: '))
-# Subtraction
-calc(5, 5, input(f'Enter sign operator: '))
-# Multiplication
-calc(5, 5, input(f'Enter sign operator: '))
-# Division
-calc(5, 5, input(f'Enter sign operator: '))
-# Division
-calc(5, 5, input(f'Enter sign operator: '))
+def calculations(a, b, c, d):
+    print(f'Result {(a + b - c) * d}')
 
+numlist = [3, 5, 7, 9]
+calculations(*numlist) # use * arguments unpacking operator
+
+def foo(a, b, c, d):
+  print(a, b, c, d)
+
+l = [0, 1]
+d = {"c":3, "d":2}
+
+foo(*l, **d)
