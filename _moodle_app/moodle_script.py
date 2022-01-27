@@ -1,8 +1,9 @@
 __author__ = 'tk'
+
 import datetime
 from time import sleep
-from selenium.webdriver.common.by import By
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 
 # This method solves the "DeprecateWarning" error that occurs in Selenium 4 and above.
@@ -12,11 +13,11 @@ from selenium.webdriver.chrome.service import Service
 s = Service(executable_path='./chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 
-
 # initialize chrome driver object
 # driver = webdriver.Chrome('./chromedriver.exe')  # relative path
 # initialize chrome driver object
-# driver = webdriver.Chrome(r'C:\Automation\PythonPRJ\moodle_app\chromedriver.exe') # right-click chromdriver.exe, copy Path > Absolute Path
+# driver = webdriver.Chrome(r'C:\Automation\PythonPRJ\moodle_app\chromedriver.exe')
+# right-click chromdriver.exe, copy Path > Absolute Path
 
 
 # ------------------ MOODLE WEB ELEMENTS ------------------------------
@@ -27,12 +28,13 @@ moodle_login_page_title = 'Software Quality Assurance Testing: Log in to the sit
 moodle_dashboard_url = 'http://52.39.5.126/my/'
 moodle_dashboard_title = 'Dashboard'
 
-#-------------------------------------------------
+
+# -------------------------------------------------
 
 
 def setUp():
     # open web browser and maximize the window
-    driver.maximize_window() # broweser window opens, ignore 'depricated' warning in console
+    driver.maximize_window()  # broweser window opens, ignore 'depricated' warning in console
 
     # wait for the browser response in general
     driver.implicitly_wait(30)
@@ -51,7 +53,7 @@ def setUp():
         tearDown()
 
 
-def tearDown():# function to end the session
+def tearDown():  # function to end the session
     if driver is not None:
         print(f'----------------------------------------')
         print(f'Test Completed at: {datetime.datetime.now()}')
@@ -72,7 +74,7 @@ def log_in():
             driver.find_element(By.ID, 'loginbtn').click()
             if driver.title == 'Dashboard' and driver.current_url == 'http://52.39.5.126/my/':
                 assert driver.current_url == 'http://52.39.5.126/my/'
-                print(f'Login Successful. Moodle Dashboard is displayed - {driver.title}')
+                print(f'Login Successful. Moodle Dashboard is displayed - Page Title: {driver.title}')
             else:
                 print(f'We\'re not at the dashboard. Try again.')
 
@@ -80,12 +82,11 @@ def log_in():
 def log_out():
     driver.find_element(By.CLASS_NAME, 'userpicture').click()
     sleep(0.25)
-    driver.find_element(By.XPATH,'//span[contains(.,"Log out")]').click()
+    driver.find_element(By.XPATH, '//span[contains(.,"Log out")]').click()
     sleep(0.25)
     if driver.current_url == moodle_url:
         print(f'Logout Successful! at {datetime.datetime.now()}')
     # breakpoint()
-
 
 
 setUp()
