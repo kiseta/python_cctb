@@ -1,6 +1,7 @@
 __author__ = 'tk'
-from selenium import webdriver # import webdriver
 from time import sleep
+
+from selenium import webdriver  # import webdriver
 
 # ------------------------------------------------
 moodle_url = 'http://52.39.5.126/'

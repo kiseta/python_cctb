@@ -1,7 +1,7 @@
 __author__ = 'tk'
 # 1. Display any 5 strings in one line using the print() command
 
-print("Hello", "My name is Tatyana,", "I came to Canada in 2004,", "I am a Test Automation Developer,",
+print("Hello", "My name is Tatyana,", "I came to Canada in 2004,", "I am a Test Automation Engineer,",
       "I currently work at CCTB teaching Test Automation")
 
 print(
@@ -17,6 +17,8 @@ print(
     "the Sun is practically identical, with the Sun\'s being slightly bigger")
 
 # 3. Display any 5 float numbers in one line using the print() command
+
+print('The most famous floating point numbers are pi:',3.14159274, 'Human body temperature: ', 36.6, 'Although anything within the range of', 36.1, 'to', 37.2,' can be a healthy, normal human temperature')
 sun_dm = 1392530
 sun_ds = 149597870
 sun_ds_to_dm = (sun_dm / sun_ds)*100
@@ -35,6 +37,7 @@ place = 1
 show = '\'Norway Got Talent\''
 age = 5
 
+# In 2014, a young singer Angelina Jordan, won the 1st place in a TV Show 'Norway Got Talent', when she was just 5 years old.
 print("1-In " + str(year) + ", a young singer " + name + ", won the " + str(place) + "st place in a TV Show " + show + ", when she was just " + str(age) + " years old.")
 print('2-In',year, 'a young singer', name, 'won the', place, 'st place in a TV Show', show, 'when she was just', age, 'years old.')
 print(f'3-In {year}, a young singer {name}, won the {place}st place in a TV Show {show}, when she was just {age} years old.') # <-- shortest
