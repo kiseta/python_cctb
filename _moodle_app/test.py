@@ -1,9 +1,10 @@
 import datetime
 from time import sleep
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome('chromedriver.exe')
+driver = webdriver.Chrome('../chromedriver.exe')
 
 
 # Fixture method - to open web browser

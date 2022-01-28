@@ -2,15 +2,16 @@ __author__ = 'tk'
 
 import datetime
 from time import sleep
+
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 
 # This method solves the "DeprecateWarning" error that occurs in Selenium 4 and above.
 # 1. Comment out, or remove the previous method which was: driver = webdriver.Chrome('chromedriver.exe path')
 # 2. Add following code
 
-s = Service(executable_path='./chromedriver.exe')
+s = Service(executable_path='../chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 
 # initialize chrome driver object
@@ -35,14 +36,11 @@ moodle_dashboard_title = 'Dashboard'
 def setUp():
     # open web browser and maximize the window
     driver.maximize_window()  # broweser window opens, ignore 'depricated' warning in console
-
     # wait for the browser response in general
     driver.implicitly_wait(30)
-
     # navigate to Moodle application website
     driver.get(moodle_url)
     # driver.get('')
-
     # check that we are on the correct UTL and the we see the correct title
     if driver.current_url == moodle_url and driver.title == moodle_home_page_title:
         print(f'We\'re at Moodle Homepage URL -- {driver.current_url}')
