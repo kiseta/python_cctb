@@ -3,7 +3,7 @@ __author__ = 'tk'
 print('Hello, ', input('Enter your name: '))
 
 # Multiple Inputs in one go
-a, b, c, d, e, f = input('Enter three inputs with space and without commas: ').split()
+a, b, c, d, e, f = input('Enter six inputs with space and without commas: ').split()
 print(a, b, c, d, e, f)
 
 # Reversing a string
@@ -32,19 +32,19 @@ s = " "
 print((a+s) * n)
 
 # Splitting a string into a list
-x = 'Python is a great language to start'
+x = 'Python is a great language to start with to learn programming'
 y = x.split()
 print(y)
 
 # Multiple input values in a single line
-name, age, city = input('Enter your info separated by space: ').split()
+name, age, city = input('Enter your name, age, city info separated by space: ').split()
 print('Student name:', name)
 print('Student age:', age)
 print('Student city:', city)
 
 # Define a simple variables
-first_name = 'Alexander'  # STATIC OR HARD CODED VALUE
-last_name = 'Shevchenko'  # STATIC OR HARD CODED VALUE
+first_name = 'Bella'  # STATIC OR HARD CODED VALUE
+last_name = 'Swan'  # STATIC OR HARD CODED VALUE
 print(first_name)
 print(last_name)
 

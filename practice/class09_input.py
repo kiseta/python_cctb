@@ -10,28 +10,32 @@ __author__ = 'tk'
 #name = input('Enter your name: ')
 #print("Reverse is", name[::-1].lower().capitalize())
 
-# # In-place swaping of two numbers
-# x, y = 10, 20
-# print(x, y)
-# x, y = y, x
-# print(x, y)
-#
-# # Print string n times
-# n = 2
-# a = "Python is the best. I'm gonna say this twice."
-# s = " "
-# print ((a+s)*n)
 
-# Spliting a string into a List
-# x = 'Your order number is ON239402983'
-# y = x.split()
-# print(y[-1])
+# ------------------------------------------------------------
+# In-place swaping of two numbers
+x, y = 10, 20
+print(x, y)
+x, y = y, x
+print(x, y)
+
+# Print string n times
+n = 2
+a = "Python is the best. I'm gonna say this twice."
+s = " "
+print ((a+s)*n)
+
+#Spliting a string into a List
+x = 'Your order number is ON239402983'
+y = x.split()
+print(y[-1])
 
 # Multiple input values in a single line
-# name, quantity, measure = input('Enter ingredient info separated by space: ').split()
-# print('Ingredient Name: ', name)
-# print('Ingredient Quantity: ', quantity)
-# print('Ingredient Measure: ', measure)
+name, quantity, measure = input('Enter ingredient info separated by space: ').split()
+print('Ingredient Name: ', name)
+print('Ingredient Quantity: ', quantity)
+print('Ingredient Measure: ', measure)
+#------------------------------------------------------
+
 
 # Incorrect variable names
 
