@@ -1,7 +1,6 @@
 __author__ = 'tk'
 import datetime
 from time import sleep
-
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -26,7 +25,7 @@ def setUp():
     driver.implicitly_wait(30)  # wait for the browser response in general
     driver.get(base_url)  # navigate to app website
 
-    # check that we are on the correct UTL and the we see the correct title
+    # check the correct URL and the correct title
     if driver.current_url == base_url and driver.title == home_page_title:
         print(f'We are at {app} Homepage URL: {driver.current_url}')
         print(f'We are seeing page title:  {driver.title}')
@@ -46,6 +45,7 @@ def tearDown():
         sleep(5)
         driver.close()
         driver.quit()
+
 
 def openVSL():
     if driver.current_url == base_url and driver.title == home_page_title:

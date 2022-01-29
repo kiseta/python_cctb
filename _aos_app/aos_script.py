@@ -11,39 +11,35 @@ from selenium.webdriver.common.by import By
 # 1. Comment out, or remove the previous method which was: driver = webdriver.Chrome('chromedriver.exe path')
 # 2. Add following code
 s = Service(executable_path='../chromedriver.exe')
-driver = webdriver.Chrome(service=s)
+driver = webdriver.Chrome(service = s)
 
 # initialize chrome driver object
 # driver = webdriver.Chrome('./chromedriver.exe')  # relative path
 # initialize chrome driver object
 # driver = webdriver.Chrome(r'C:\Automation\PythonPRJ\moodle_app\chromedriver.exe')
-# right-click chromdriver.exe, copy Path > Absolute Path
+# right-click chromedriver.exe, copy Path > Absolute Path
 
 
 # ------------------ AOS WEB ELEMENTS ------------------------------
+app = 'Advantage Online Shopping'
 base_url = 'https://advantageonlineshopping.com/#/'
 home_page_title = '\xa0Advantage Shopping'
-app = 'Advantage Online Shopping'
 # -------------------------------------------------
 
 
 def setUp():
-    # open web browser and maximize the window
-    driver.maximize_window()  # broweser window opens, ignore 'depricated' warning in console
+    print(f'Launch {app}')
+    print(f'----------------------------------------')
+    driver.maximize_window()  # open web browser and maximize the window
+    driver.implicitly_wait(30)  # wait for the browser response in general
+    driver.get(base_url)  # navigate to app website
 
-    # wait for the browser response in general
-    driver.implicitly_wait(30)
-
-    # navigate to Moodle application website
-    driver.get(base_url)
-    # driver.get('')
-
-    # check that we are on the correct UTL and the we see the correct title
+    # check the correct URL and the correct title
     if driver.current_url == base_url and driver.title == home_page_title:
         print(f'We\'re at {app} URL: {driver.current_url}')
-        print('Actual Page Title: ',{driver.title})
+        print('Actual Page Title: ', {driver.title})
         print(f'We\'re seeing page title: {driver.title}')
-        #breakpoint()
+        # breakpoint()
     else:
         print(driver.current_url)
         print(f'We are not on {app} Home Page. Check your code')
@@ -54,7 +50,7 @@ def tearDown():  # function to end the session
     if driver is not None:
         print(f'----------------------------------------')
         print(f'Test Completed at: {datetime.datetime.now()}')
-        sleep(5)
+        sleep(2)
         driver.close()
         driver.quit()
 
