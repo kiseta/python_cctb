@@ -33,45 +33,48 @@ def setUp():
         print(f'{hr}We are at {app} Homepage URL: {driver.current_url}')
         print(f'We are seeing page title:  {driver.title}')
     else:
+        print(f'>>>> We are NOT on {app} Home Page. Check your code.')
         print(f'Expected URL: {base_url} \nActual URL: {driver.current_url}')
         print(f'Expected Page Title: {home_page_title} \nActual Page Title: {driver.title}')
-        print(f'>>>> We are NOT on {app} Home Page. Check your code.')
-        tearDown()
+
 
 
 def tearDown():
     if driver is not None:
         print(f'{hr}Test Completed at: {datetime.datetime.now()}')
-        sleep(3)
+        sleep(2)
         driver.close()
         driver.quit()
 
 
 def search():
     if driver.current_url == base_url and driver.title == home_page_title:
+        assert driver.current_url == base_url
+        assert driver.title == home_page_title
+        # Search for search term
         print(f'{hr}Search for: {search_term}')
         driver.find_element(By.ID, 'searchInput').send_keys(search_term)
-        sleep(3)
-        driver.find_element(By.XPATH, '//span[contains(.,"' + search_term + '")]').click()
+        sleep(2)
+        driver.find_element(By.XPATH, f'//span[contains(.,"{search_term}")]').click()
         sleep(1)
         if driver.title == search_term_page_title and driver.current_url == search_term_url:
             assert driver.current_url == search_term_url
             assert driver.title == search_term_page_title
             print(f'We are at {search_term} Page!')
         else:
-            print(f'>>>> We are NOT at {search_term} Page. Try again.')
+            print(f'>>>> We are NOT at {search_term_page_title} Page. Try again.')
+            print(f'Expected URL: {search_term_url}; \nActual URL: {driver.current_url}')
+            print(f'Expected Page Title: {search_term_page_title} \nActual Page Title: {driver.title}')
     else:
+        print(f'>>>> We are NOT on {app} Home Page. Check your code.')
         print(f'Expected URL: {base_url}; \nActual URL: {driver.current_url}')
         print(f'Expected Page Title: {home_page_title} \nActual Page Title: {driver.title}')
-        print(f'>>>> We are NOT on {app} Home Page. Check your code.')
+
 
 
 def goHome():
     print(f'{hr}Navigate to {app} home page')
     driver.find_element(By.ID, 'p-logo').click()
-    # confirm we are on the home page
-    assert driver.current_url == base_url
-    assert driver.title == home_page_title
 
 setUp()
 search()

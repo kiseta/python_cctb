@@ -11,7 +11,7 @@ for l in anyword:
 
 # 2. Make a program using FOR LOOP to iterate over a Python list or tuple. The list should have at least 5 elements.
 
-favorite_fruit = ['Nectarine', 'Mango', 'Durian', 'Canistel', 'Cherimoya']
+favorite_fruit = ['Nectarine', 'Mango', 'Apple', 'Grapes', 'Pear']
 for fruit in favorite_fruit:
     print(f'I love {fruit}!')
 
