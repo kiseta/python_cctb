@@ -18,6 +18,20 @@ __author__ = 'tk'
 # fruits = ['Apple', 'Banana', 'Cherrie', 'Plum', 'Mango']
 # for f in fruits:
 #     print(f)
+
+
+# Using for loop print index : value pairs from a list or tuple
+tropical_tuple = ('Durian', 'Mangosteen', 'Jackfruit', 'Cherimoya', 'Lychee')
+
+for i in range(len(tropical_tuple)):
+    print(f'{i} : {tropical_tuple[i]}')
+
+# Using for loop print index : value pairs from a list or tuple
+tropical_list = ['Durian', 'Mangosteen', 'Jackfruit', 'Cherimoya', 'Lychee']
+
+for i in range(len(tropical_list)):
+    print(f'{i} : {tropical_list[i]}')
+
 #
 # # 3. Program to find the sum of all int numbers stored in a lit
 #

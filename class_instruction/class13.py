@@ -32,7 +32,8 @@ while (not integer) and (not string):
             string = False
     except ValueError as e:
         print(f'You entered string value, not integer. Try again!')
-
+    finally:
+        print('Program is done')
 
 # 3. Program where we can try to divide by 0.
 try:

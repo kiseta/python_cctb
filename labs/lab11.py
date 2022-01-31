@@ -38,3 +38,5 @@ while not valid_flag:
             print(f'Your number {numbers} is not from a given range. Please try again!')
     except ValueError as e:
         print(f'You entered non integer value. Please try again! Error message: ', e)
+    finally:
+        print('The program is done!')

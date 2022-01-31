@@ -77,16 +77,12 @@ finally:
 # NameError: name 'boooks' is not defined
 
 ages = {
-	'pam': 24,
-	'jim': 24,
-	'michael': 43
+    'pam': 24,
+    'jim': 24,
+    'michael': 43
 }
 
 print(f'Michael is {ages["michael"]} years old.')
 
-# 2.Program to check the number from the given range
-# Program requirements
-# Check if entry is an int
-# Check if the entry is in range
-# Keep prompting to enter a number until the correct value is entered
+
 

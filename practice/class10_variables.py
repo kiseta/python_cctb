@@ -39,6 +39,7 @@ print(f2_pi)
 
 print('%s' % 'Hello, World!')
 print('%.2f' % pi)
+print('%f' % pi)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Assignment / Reassignment

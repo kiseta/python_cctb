@@ -81,13 +81,15 @@ print(8 != 1)
 # IF Conditional statement
 age = int(input('Enter your age: '))
 if 40 > age > 20:
-    print('Your age is greater than 20. Not bad!')
+    print('Your age is greater than 20. Not bad! You can play the following games')
 elif 5 < age < 10:
-    print('Your age is less than 10. Well done!')
+    print('Your age is less than 10. Well done! We suggest these games for you.')
+elif 10 < age < 20:
+    print('Your age is less than 10. Well done! We suggest these games for you.')
 elif age == 0:
-    print('You\'ve not born yet. Please wait a couple of month!')
+    print('You\'ve not born yet. Please wait for a few years!')
 else:
-    print(f'Your age isn\'t defined and it is {age}')
+    print(f'We don\'t have any games for your age: {age}')
 
 # Check the nationality
 nationality = input('What is your nationality? '
@@ -103,17 +105,17 @@ elif nationality == 'french':
 elif nationality == 'italian':
     print('I\'m gonna say Chao to you')
 elif nationality == 'chinese':
-    print('I\'m gonna say nÄ­ hÄƒo to you')
+    print('I\'m gonna say ni hao to you')
 elif nationality == 'indian':
     print('I\'m gonna say Namaste to you')
 elif nationality == 'korean':
     print('I\'m gonna say annyeonghaseyo to you')
 elif nationality == 'russian':
-    print('I\'m gonna say ÐŸÑ€Ð¸Ð²ÐµÑ‚ to you')
+    print('I\'m gonna say Привет‚ to you')
 elif nationality == 'kazakh' or nationality == 'uzbek':
     print('I\'m gonna say Salam to you')
 elif nationality == 'ukrainian':
-    print('I\'m gonna say ÐŸÑ€Ð¸Ð²Ñ–Ñ‚ to you')
+    print('I\'m gonna say Привiт‚ to you')
 else:
     print(f'Sorry, I can\'t recognize what is {nationality} nationality')
 

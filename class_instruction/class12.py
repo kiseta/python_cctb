@@ -96,3 +96,15 @@ list_of_fruits = ['banana', 'mango', 'strawberry', 'nectarine']
 for num1 in list_of_fruits:
     for num2 in range(14):
         print(f'{num1} {num2}')
+
+# Using for loop print index : value pairs from a list or tuple
+tropical_tuple = ('Durian', 'Mangosteen', 'Jackfruit', 'Cherimoya', 'Lychee')
+
+for i in range(len(tropical_tuple)):
+    print(f'{i} : {tropical_tuple[i]}')
+
+# Using for loop print index : value pairs from a list or tuple
+tropical_list = ['Durian', 'Mangosteen', 'Jackfruit', 'Cherimoya', 'Lychee']
+
+for i in range(len(tropical_list)):
+    print(f'{i} : {tropical_list[i]}')
