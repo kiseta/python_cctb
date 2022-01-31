@@ -128,12 +128,22 @@
 #     print(f'We don\'t have any games for your age: {age}')
 
 a = [1, 2, 3, 'a', 1, 3, 5] # create list
-print(a)
-print(tuple(a))
-print(set(a))
+# print(a)
+# print(tuple(a))
+# print(set(a))
+#
+# b = {'a', 1, 4, 8} # create set
+# print(b)
+# print(list(b))
+# print(tuple(b))
+# print(dict.fromkeys(a,1))
 
-b = {'a', 1, 4, 8} # create set
-print(b)
-print(list(b))
-print(tuple(b))
+
+# Make Dictionary from 2 lists
+key_lst= ['username', 'password', 'firstname','lastname', 'email']
+val_lst = ['testuser99', 'Pass1', 'Test','User', 'testuser99@google.com']
+
+dic_lst = {key_lst[i]: val_lst[i] for i in range(len(key_lst))}
+print(dic_lst)
+print(len(dic_lst))
 

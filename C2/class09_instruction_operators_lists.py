@@ -145,7 +145,7 @@ print(list_of_names)
 print(list_of_names[0])
 
 # update value in the list
-list_of_names[3] = 'Sam'
+list_of_names[3] = 'Jason'
 print(list_of_names)
 
 # append
@@ -219,13 +219,13 @@ print('------ end tuple example ----------------')
 # 3. SET
 # Set is unhonored, unchangeable (unmutable) and unindexed. No duplicate memebers are allowed
 # Sets are written in curly braces
-
+print('------ set example ----------------')
 yummy_set = {'apple', 'banana', 'mango', 'cherry', 'watermelon'}
 print(yummy_set)
 
 for ys in yummy_set:
     print(ys)
-
+print('------ end set example ----------------')
 #####################################################
 # 4. DICTIONARY
 # Dictionary is a key:value pair collection which is ordered, changeable, no duplicate members
@@ -242,7 +242,7 @@ new_user = {
     'password': 'Pass1',
     'firstname': 'Test',
     'lastname': 'User',
-    'emailaddress': 'testuser99@gmail.com'
+    'email': 'testuser99@gmail.com'
 }
 
 # Display all
@@ -281,13 +281,20 @@ new_user['username'] = 'happyuser'
 print(student)
 print(new_user)
 
-# ###########LIST VS SET VS TUPLE PRACTICE ################
+# ###########LIST VS SET VS TUPLE VS DICTIONARY PRACTICE ################
 a = [1, 2, 3, 'a', 1, 3, 5] # create list
 print(a)
 print(tuple(a))
-print(set(a))
+print(set(a)) # unique values only
 
 b = {'a', 1, 4, 8} # create set
 print(b)
 print(list(b))
 print(tuple(b))
+
+# Make Dictionary from 2 lists
+key_lst= ['username', 'password', 'firstname','lastname', 'email']
+val_lst = ['testuser99', 'Pass1', 'Test','User', 'testuser99@google.com']
+
+dic_lst = {key_lst[i]: val_lst[i] for i in range(len(key_lst))}
+print(dic_lst)
