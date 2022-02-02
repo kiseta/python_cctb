@@ -19,6 +19,9 @@ fruits = ['Apple', 'Pear', 'Cherry', 'Plum', 'Mango']
 for f in fruits:
     print(f)
 
+for i in range(len(fruits)):
+    print(f'{i} {fruits[i]}')
+
 # Using for loop print index : value pairs from a list or tuple
 tropical_tuple = ('Durian', 'Mangosteen', 'Jackfruit', 'Cherimoya', 'Lychee')
 
@@ -32,7 +35,7 @@ for i in range(len(tropical_list)):
     print(f'{i} : {tropical_list[i]}')
 
 
-# 3. Program to find the sum of all int numbers stored in a lit
+# 3. Program to find the sum of all int numbers stored in a list
 
 list_of_numbers = [6, 5, 3, 8, 4, 2, 5, 4, 11]
 
@@ -47,7 +50,7 @@ print(f'The sum is {sum}')
 
 # 4. Program to iterate through the list using indexing
 
-genre = ['pop', 'rock', 'jazz'] #list
+genre = ['pop', 'rock', 'jazz'] # list
 
 # Iterate over the list using index
 for i in range(len(genre)):
@@ -84,11 +87,18 @@ else:
 # The WHILE LOOP IN PYTHON is used to iterate over the blok of code
 # as long as test expression (or condition) is true
 
-number = 10
+num = 10
 var = 10
-while number: # while number is True
+while num: # while number is True
     var = var + 1
-    print(var)
+    print(f'Var: {var}')
+
+
+while num != 0: # while number is True
+    var = var + 1
+    num -= 1
+    print(f'Var: {var}')
+    print(f'Num: {num}')
 
 # 1. Simple program to start at 1 and stop at 100
 num = 1
