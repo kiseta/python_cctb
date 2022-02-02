@@ -23,3 +23,16 @@ except TypeError as te:
     print(f'TypeError: {te}, check your item type')
 finally:
     print('---------------- Program is done----------------')
+
+# driver.find_element(By.XPATH, '//span[contains(.,"System")]').click()
+# sleep(0.25)
+# driver.find_element(By.XPATH, '//span[contains(.,"Technology")]').click()
+# sleep(0.25)
+# driver.find_element(By.XPATH, '//span[contains(.,"Software Testing")]').click()
+# sleep(0.25)
+# driver.find_element(By.XPATH, '//span[contains(.,"Software Manual Testing")]').click()
+# sleep(0.25)
+# driver.find_element(By.XPATH, '//span[contains(.,"Course image")]').click()
+# sleep(0.25)
+# driver.find_element(By.XPATH, '//span[contains(.,"Manual-Testing.jpg")]').click()
+# sleep(0.25)

@@ -23,6 +23,8 @@ driver = webdriver.Chrome(service = s)
 # ------------------ AOS WEB ELEMENTS ------------------------------
 app = 'Advantage Online Shopping'
 base_url = 'https://advantageonlineshopping.com/#/'
+new_account_url = 'https://advantageonlineshopping.com/#/register'
+new_account_page_title = 'CREATE NEW ACCOUNT'
 home_page_title = '\xa0Advantage Shopping'
 # -------------------------------------------------
 
@@ -84,7 +86,18 @@ def log_out():
     # breakpoint()
 
 
+def create_new_user():
+    if driver.current_url == base_url:
+        driver.find_element(By.ID, 'menuUserLink').click()
+        sleep(2)
+        assert driver.find_element(By.LINK_TEXT, 'CREATE NEW ACCOUNT')
+        if driver.find_element(By.LINK_TEXT, 'CREATE NEW ACCOUNT'):
+            print('We are at the Login Pop Up screen!')
+            driver.find_element(By.LINK_TEXT, 'CREATE NEW ACCOUNT').click()
+
+
 setUp()
+#create_new_user()
 log_in()
 log_out()
 tearDown()
