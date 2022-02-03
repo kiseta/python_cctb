@@ -2,13 +2,14 @@ __author__ = 'tk'
 
 import datetime
 from time import sleep
-import moodle_locators as locators
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.keys import Keys
 
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+
+import moodle_locators as locators
 
 # This method solves the "DeprecateWarning" error that occurs in Selenium 4 and above.
 # 1. Comment out, or remove the previous method which was: driver = webdriver.Chrome('chromedriver.exe path')
@@ -129,8 +130,10 @@ def create_new_user():
 
     # select an image to upload
     img_path = ['System','Technology','Software Testing','Software Manual Testing','Course image','Mannual-Testing.jpg' ]
+    #img_path = ['Private files', 'femaleyes.png']
     for p in img_path:
-        driver.find_element(By.XPATH, f'//span[contains(.,"{p}")]').click()
+        #driver.find_element(By.XPATH, f'//span[contains(.,"{p}")]').click()
+        driver.find_element(By.LINK_TEXT, p).click()
         sleep(0.25)
 
     driver.find_element(By.XPATH, '//input[@value="4"]').click()
@@ -161,17 +164,25 @@ def create_new_user():
         sleep(0.25)
 
     # populate optional fields
-    driver.find_element(By.LINK_TEXT, 'Optional').click()
+    # driver.find_element(By.LINK_TEXT, 'Optional').click()
+    driver.find_element(By.XPATH, "//a[text() = 'Optional']").click()
 
     for i in range(len(locators.lst_ids)):
         fld, fid, val = locators.lst_opt[i], locators.lst_ids[i], locators.lst_val[i]
         print(f'Populate \'{fld}\' field with \'{val}\' value -------------------------')
-        driver.find_element(By.ID, f'{fid}').send_keys(val)
+        #driver.find_element(By.ID, f'{fid}').send_keys(val)
+        driver.find_element(By.ID, fid).send_keys(val)
+        # other options
+        # driver.find_element(By.CSS_SELECTOR, 'input#' + fid).send_keys(val)
+        #driver.find_element(By.CSS_SELECTOR, f'input#{fid}').send_keys(val)
+        #driver.find_element(By.XPATH, f'//*[@id="{fid}"]').send_keys(val)
         sleep(0.25)
+
+    driver.find_element(By.ID, 'id_submitbutton').click()
     sleep(5)
     breakpoint()
 
-# Open Web Browswer
+# Open Web Browser
 setUp()
 # Login
 log_in()

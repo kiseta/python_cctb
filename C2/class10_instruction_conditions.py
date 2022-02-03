@@ -20,46 +20,46 @@ print(5 == 5)
 print(8 != 1)
 
 # # IF Conditional statement
-# print(f'Welcome to our website! We can help you pick the right game for your age.')
-# age = int(input('Please enter your age: '))
-# if age > 20 and age <= 40:
-#     print('Your age is 20 to 40. Not bad! You can play the following games: G1, G2, G3')
-# elif age > 11 and age <= 20:
-#     print('Your age is 11 to 20. Cool! We suggest these games for you: G4, G5, G6')
-# elif age > 5 and age <= 10:
-#     print('Your age is 5 to 10. Awesome! Let\'s play these games: G-01, G-02, G-03')
-# elif age == 0:
-#     print('You\'re not born yet. Please wait for a few years!')
-# else:
-#     print(f'We don\'t have any games for your age: {age}')
+print(f'Welcome to our website! We can help you pick the right game for your age.')
+age = int(input('Please enter your age: '))
+if age > 20 and age <= 40:
+    print('Your age is 20 to 40. Not bad! You can play the following games: G1, G2, G3')
+elif age > 11 and age <= 20:
+    print('Your age is 11 to 20. Cool! We suggest these games for you: G4, G5, G6')
+elif age > 5 and age <= 10:
+    print('Your age is 5 to 10. Awesome! Let\'s play these games: G-01, G-02, G-03')
+elif age == 0:
+    print('You\'re not born yet. Please wait for a few years!')
+else:
+    print(f'We don\'t have any games for your age: {age}')
 #
-# # Check the nationality
-# nationality = input('What is your nationality? '
-#                'Type english, french, italian, chinese, indian, korean, russian, kazakh, uzbek, ukrainian : ')
-#
-# age = int(input('Enter your age: '))
-# if nationality == 'english' and age < 15:
-#     print('I\'m gonna say Heyyy to you')
-# elif nationality == 'english' and age > 15:
-#     print('I\'m gonna say Hello to you')
-# elif nationality == 'french':
-#     print('I\'m gonna say Bonjour to you')
-# elif nationality == 'italian':
-#     print('I\'m gonna say Chao to you')
-# elif nationality == 'chinese':
-#     print('I\'m gonna say ni hao to you')
-# elif nationality == 'indian':
-#     print('I\'m gonna say Namaste to you')
-# elif nationality == 'korean':
-#     print('I\'m gonna say annyeonghaseyo to you')
-# elif nationality == 'russian':
-#     print('I\'m gonna say Привет‚ to you')
-# elif nationality == 'kazakh' or nationality == 'uzbek':
-#     print('I\'m gonna say Salam to you')
-# elif nationality == 'ukrainian':
-#     print('I\'m gonna say Привiт‚ to you')
-# else:
-#     print(f'Sorry, I can\'t recognize what is {nationality} nationality')
+# Check the nationality
+nationality = input('What is your nationality? '
+               'Type english, french, italian, chinese, indian, korean, russian, kazakh, uzbek, ukrainian : ')
+
+age = int(input('Enter your age: '))
+if nationality == 'english' and age < 15:
+    print('I\'m gonna say Heyyy to you')
+elif nationality == 'english' and age > 15:
+    print('I\'m gonna say Hello to you')
+elif nationality == 'french':
+    print('I\'m gonna say Bonjour to you')
+elif nationality == 'italian':
+    print('I\'m gonna say Chao to you')
+elif nationality == 'chinese':
+    print('I\'m gonna say ni hao to you')
+elif nationality == 'indian':
+    print('I\'m gonna say Namaste to you')
+elif nationality == 'korean':
+    print('I\'m gonna say annyeonghaseyo to you')
+elif nationality == 'russian':
+    print('I\'m gonna say Привет‚ to you')
+elif nationality == 'kazakh' or nationality == 'uzbek':
+    print('I\'m gonna say Salam to you')
+elif nationality == 'ukrainian':
+    print('I\'m gonna say Привiт‚ to you')
+else:
+    print(f'Sorry, I can\'t recognize what is {nationality} nationality')
 
 app = 'Moodle LMS'
 # Expected values

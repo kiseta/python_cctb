@@ -79,7 +79,7 @@ b = c = d = e = int(input('Enter year: '))  # Dynamic Values
 print(b, c+1, d+2, e+3)
 
 #####################################################
-# BASIC OPERATORS - ADDITIONS, SUBTRACTION, MULTIPLICATION, DIVISION
+# BASIC MATH OPERATORS - ADDITIONS, SUBTRACTION, MULTIPLICATION, DIVISION
 
 # Depends on data type, Python allows arithmetic operations
 # INT = all operators(*, /, -, +)

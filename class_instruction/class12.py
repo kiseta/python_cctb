@@ -50,11 +50,11 @@ else:
 student_name = input('Enter name of the student: ')
 
 # Let's make marks dictionary
-marks = {'James': 90, 'Julie': 55, 'Brandon': 77}
+grades = {'James': 90, 'Julie': 55, 'Brandon': 77}
 
-for student in marks:
+for student in grades:
     if student == student_name:
-        print(marks[student])
+        print(grades[student])
 
 # PYTHON WHILE LOOP
 # The WHILE LOOP in Python is used to iterate over the block of code

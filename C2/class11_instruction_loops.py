@@ -3,9 +3,9 @@ __author__ = 'tk'
 #  The FOR LOOP in Python is used to iterate over a sequence (list, tuple, string) and
 #  other objects
 
-# 1. Pring individual letter of a string using the FOR LOOP
+# 1. Print individual letter of a string using the FOR LOOP
 
-word = 'Apple'
+word = 'Python'
 for letter in word:
     print(letter)
 
@@ -15,18 +15,19 @@ for l in word2:
 
 # Using the FOR LOOP to iterate over Python list or Tuple
 
-fruits = ['Apple', 'Pear', 'Cherry', 'Plum', 'Mango']
-for f in fruits:
+music_genres = ['Electronic', 'Jazz', 'Oldies', 'Classical', 'Blues']
+for f in music_genres:
     print(f)
 
 # Using for loop print index : value pairs from a list or tuple
-tropical_tuple = ('Durian', 'Mangosteen', 'Jackfruit', 'Cherimoya', 'Lychee')
+music_tuple = ('Electronic', 'Jazz', 'Oldies', 'Classical', 'Blues')
 
-for i in range(len(tropical_tuple)):
-    print(f'{i} : {tropical_tuple[i]}')
+for i in range(len(music_tuple)):
+    print(f'{i} : {music_tuple[i]}')
 
 # Using for loop print index : value pairs from a list or tuple
-tropical_list = ['Durian', 'Mangosteen', 'Jackfruit', 'Cherimoya', 'Lychee']
+
+tropical_list = ['Durian', 'Mango', 'Jackfruit', 'Cherimoya', 'Lychee']
 
 for i in range(len(tropical_list)):
     print(f'{i} : {tropical_list[i]}')
@@ -47,7 +48,7 @@ print(f'The sum is {sum}')
 
 # 4. Program to iterate through the list using indexing
 
-genre = ['pop', 'rock', 'jazz'] #list
+genre = ['chill', 'oldies', 'jazz'] #list
 
 # Iterate over the list using index
 for i in range(len(genre)):
@@ -66,15 +67,15 @@ else:
 student_name = 'Ellen' #input('Enter a student name: ')
 
 # Let's make marks dictionary
-marks = {
+grades = {
     'James': 90,
     'Julie': 55,
     'Brandon': 77
 }
-count = len(marks)
-for student in marks:
+count = len(grades)
+for student in grades:
     if student == student_name:
-        print(marks[student])
+        print(grades[student])
     else:
         print(f' Student {student_name} was not found')
 else:
@@ -127,3 +128,26 @@ for num1 in range(3):
     for num2 in range(10, 14):
         print(f'{num1} {num2}')
         print('%s %s' % (num1, num2))
+
+
+# 5.Program to check the number from the given range
+# Program requirements
+# Check if entry is an intteger
+# Check if the entry is in range
+# Keep prompting to enter a number until the correct value is entered
+
+numbers = None
+valid_flag = False
+while not valid_flag:
+    try:
+        numbers = int(input('Please enter any integer number from 1 to 10: '))
+        while 0 < numbers <= 10:
+            print(f'All good. Your number {numbers} is from 1 to 10.')
+            valid_flag = True
+            break
+        else:
+            print(f'Your number {numbers} is not from a given range. Please try again!')
+    except ValueError as e:
+        print(f'You entered non integer value. Please try again! Error message: ', e)
+    finally:
+        print('The program is done!')
