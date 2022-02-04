@@ -1,12 +1,11 @@
 __author__ = 'tk'
-
 import datetime
+import sys
 from time import sleep
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
 import moodle_locators as locators
@@ -47,24 +46,25 @@ def tearDown():  # function to end the session
     if driver is not None:
         print(f'----------------------------------------')
         print(f'Test Completed at: {datetime.datetime.now()}')
-        sleep(2)
+        sleep(0.5)
         driver.close()
         driver.quit()
 
 
-def log_in():
+def log_in(username, password):
     if driver.current_url == locators.moodle_url:
         driver.find_element(By.LINK_TEXT, 'Log in').click()
         if driver.current_url == locators.moodle_login_page_url:
             print('We are at the Login Page!')
-            driver.find_element(By.ID, 'username').send_keys(locators.moodle_username)
+            driver.find_element(By.ID, 'username').send_keys(username)
             sleep(0.25)
-            driver.find_element(By.ID, 'password').send_keys(locators.moodle_password)
+            driver.find_element(By.ID, 'password').send_keys(password)
             sleep(0.25)
             driver.find_element(By.ID, 'loginbtn').click()
             if driver.title == 'Dashboard' and driver.current_url == locators.moodle_dashboard_url:
                 assert driver.current_url == locators.moodle_dashboard_url
-                print(f'Login Successful. Moodle Dashboard is displayed - Page Title: {driver.title}')
+                print(f' --- Moodle Dashboard is displayed - Page Title: {driver.title} --- ')
+                print(f' --- User: "{username}/{password}" login successful! --- ')
             else:
                 print(f'We\'re not at the dashboard. Try again.')
 
@@ -154,14 +154,18 @@ def create_new_user():
     driver.find_element(By.LINK_TEXT, 'Interests').click()
     sleep(0.25)
 
-    # add multiple insteres
+    # add multiple insterests
     for tag in locators.list_of_interests:
         #driver.find_element(By.XPATH, '//div[3]/input').send_keys(tag)
-        driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(tag)
+        driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(tag + "\n")
         sleep(0.25)
         #driver.find_element(By.XPATH, '//div[3]/input').send_keys(Keys.ENTER) # import Keys
-        driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(Keys.ENTER)
+        #driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(Keys.ENTER)
         sleep(0.25)
+
+    # for i in range(0, 3):
+    #     driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(locators.fake.job() + "\n")
+    #     sleep(0.25)
 
     # populate optional fields
     # driver.find_element(By.LINK_TEXT, 'Optional').click()
@@ -169,7 +173,7 @@ def create_new_user():
 
     for i in range(len(locators.lst_ids)):
         fld, fid, val = locators.lst_opt[i], locators.lst_ids[i], locators.lst_val[i]
-        print(f'Populate \'{fld}\' field with \'{val}\' value -------------------------')
+        #print(f'Populate \'{fld}\' field with \'{val}\' value -------------------------')
         #driver.find_element(By.ID, f'{fid}').send_keys(val)
         driver.find_element(By.ID, fid).send_keys(val)
         # other options
@@ -177,18 +181,76 @@ def create_new_user():
         #driver.find_element(By.CSS_SELECTOR, f'input#{fid}').send_keys(val)
         #driver.find_element(By.XPATH, f'//*[@id="{fid}"]').send_keys(val)
         sleep(0.25)
-
+    #breakpoint()
     driver.find_element(By.ID, 'id_submitbutton').click()
-    sleep(5)
-    breakpoint()
+    sleep(0.25)
+    print(f'--- Test Scenario: Create New User "{locators.new_username}" --- Passed')
 
+
+
+def check_new_user_created():
+    # Check we are on the User's Main Page
+    if driver.current_url == locators.moodle_users_main_page and driver.title == locators.moodle_users_main_page_title:
+        assert driver.find_element(By.XPATH, "//h1[text() = 'Software Quality Assurance Testing']").is_displayed()
+        print('Page title: ', driver.find_element(By.XPATH, "//h1[text() = 'Software Quality Assurance Testing']").is_displayed())
+        if driver.find_element(By.ID, 'fgroup_id_email_grp_label') and driver.find_element(By.NAME, 'email'):
+            sleep(0.25)
+            driver.find_element(By.CSS_SELECTOR,'input#id_email').send_keys(locators.email)
+            sleep(0.25)
+            driver.find_element(By.CSS_SELECTOR,'input#id_addfilter').click()
+
+            if driver.find_element(By.XPATH, f'//td[contains(.,"{locators.email}")]'):
+                print(f'New User "{locators.email}" is created and found! Awesome!')
+                print(f'--- Test Scenario: Create New User --- Passed')
+                log_out()
+
+        # breakpoint()
+
+def check_we_logged_in_with_new_cred():
+    if driver.current_url == locators.moodle_dashboard_url:
+        if driver.find_element(By.XPATH, f'//span[contains(., "{locators.full_name}")]').is_displayed():
+            print(f'--- User with the name {locators.full_name} is displayed. Test Passed ---')
+
+
+def logger():
+    old_instance = sys.stdout
+    log_file  = open('message.log', 'a')
+    sys.stdout = log_file
+    print(f'{datetime.datetime.now()}'
+          f'\nEmail: {locators.email}'
+          f'\nUsername: {locators.new_username}'
+          f'\nPassword: {locators.new_password} '
+          f'\n{"-----~*~-----" * 3}')
+    sys.stdout = old_instance
+    log_file.close()
+
+
+
+############# CREATE A NEW USER #################
 # Open Web Browser
 setUp()
 # Login
-log_in()
+log_in(locators.moodle_username, locators.moodle_password)
 # Create New User
 create_new_user()
+# Check New User created
+check_new_user_created()
 # Logout
-log_out()
+#log_out()
 # Close browser
+#tearDown()
+sleep(2)
+
+############# LOGIN AS NEW USER #################
+# Open Web Browser
+#setUp()
+# Login
+log_in(locators.new_username, locators.new_password)
+# check new user
+check_we_logged_in_with_new_cred()
+log_out()
+
+log_in(locators.moodle_username, locators.moodle_password)
+# delete user goes here
+log_out()
 tearDown()

@@ -7,21 +7,23 @@ fake = Faker(locale='en_CA')
 
 # ------------------ MOODLE WEB ELEMENTS ------------------------------
 app = 'Moodle LMS'
+moodle_username = 'tkuser'
+moodle_password = 'Moodle!123'
 moodle_url = 'http://52.39.5.126/'
 moodle_home_page_title = 'Software Quality Assurance Testing'
 moodle_login_page_url = 'http://52.39.5.126/login/index.php'
 moodle_login_page_title = 'Software Quality Assurance Testing: Log in to the site'
 moodle_dashboard_url = 'http://52.39.5.126/my/'
 moodle_dashboard_title = 'Dashboard'
-moodle_username = 'tkuser'
-moodle_password = 'Moodle!123'
+moodle_users_main_page = 'http://52.39.5.126/admin/user.php'
+moodle_users_main_page_title ='SQA: Administration: Users: Accounts: Browse list of users'
 # -------------------------------------------------
 
 # generate fake data values for new user
 first_name = fake.first_name()
 last_name = fake.last_name()
 middle_name = fake.first_name()
-
+full_name = f'{first_name} {last_name}'
 new_username = f'{first_name}{last_name}'.lower()
 new_password = fake.password()
 email = f'{new_username}@{fake.free_email_domain()}' #fake.email()
@@ -31,13 +33,13 @@ city = fake.city()
 country = fake.current_country()
 description = fake.sentence(nb_words = 75, variable_nb_words = True)
 pic_desc = f'image submitted by {first_name} {last_name}'
-list_of_interests = [fake.job(), fake.job(), fake.job(), fake.job()]
+list_of_interests = [fake.job(),fake.job(),fake.job(),fake.job()]
 address = f'{fake.street_address()} {city} {fake.province_abbr()} {fake.postalcode()} {country}'
-address1 = fake.address().replace("\n", "")
+address1 = fake.address().replace("\n", " ")
 idnumber  = fake.bothify(text='????-#####', letters='QZXWOAY')
 icq_num = fake.pyint(111111,999999)
-id_aim = last_name.lower() + fake.bothify(text='###')
-id_msn = country.lower()+ fake.bothify(text='##') + first_name.lower()
+id_aim = last_name.lower() + str(fake.pyint(11,999999))
+id_msn = first_name.lower() + str(fake.pyint(11,99)) + country.lower()
 
 lst_opt = ['Web page', 'ICQ number', 'Skype ID', 'AIM ID', 'Yahoo ID', 'MSN ID',
            'ID number', 'Institution', 'Department',
