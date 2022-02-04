@@ -254,3 +254,5 @@ log_in(locators.moodle_username, locators.moodle_password)
 # delete user goes here
 log_out()
 tearDown()
+
+logger()
