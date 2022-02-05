@@ -84,5 +84,13 @@ ages = {
 
 print(f'Michael is {ages["michael"]} years old.')
 
+def find_between_r( s, first, last ):
+    try:
+        start = s.rindex( first ) + len( first )
+        end = s.rindex( last, start )
+        return s[start:end]
+    except ValueError:
+        return ""
 
+print(find_between_r('http://52.39.5.126/user/view.php?id=533&course=1','=','&'))
 

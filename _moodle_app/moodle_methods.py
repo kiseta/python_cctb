@@ -17,7 +17,7 @@ import moodle_locators as locators
 
 s = Service(executable_path='../chromedriver.exe')
 driver = webdriver.Chrome(service=s)
-
+user_system_id = ''
 
 # initialize chrome driver object
 # driver = webdriver.Chrome('./chromedriver.exe')  # relative path
@@ -204,9 +204,12 @@ def search_user():
             driver.find_element(By.CSS_SELECTOR, 'input#id_addfilter').click()
 
             if driver.find_element(By.XPATH, f'//td[contains(.,"{locators.email}")]'):
-                print(f'--- User "{locators.email}" is found --- ')
-                # print(f'--- Test Scenario: Create New User --- Passed')
-
+                # capture new user system id
+                href = driver.find_element(By.LINK_TEXT, locators.full_name).get_attribute("href")
+                global user_system_id
+                user_system_id = href[href.find('=') + 1 : href.rfind('&')]
+                print(f'--- User: {locators.email}, System ID: {user_system_id} is found --- ')
+                return user_system_id
             # breakpoint()
 
 
@@ -230,12 +233,13 @@ def delete_user():
 
     # Search for a user
     search_user()
-    driver.find_element(By.CSS_SELECTOR, "a[href*='delete']").click()
+    print('--- Delete Link:', driver.find_element(By.CSS_SELECTOR, f"a[href*='delete']").get_attribute("href"))
+    driver.find_element(By.CSS_SELECTOR, f"a[href*='delete={user_system_id}']").click()
     sleep(0.25)
     # delete user
     driver.find_element(By.XPATH, "//button[text()='Delete']").click()
     # driver.find_element(By.XPATH, "//*[contains(text(), 'Delete')]").click()
-    print(f"--- User '{locators.email}' is deleted  at:{datetime.datetime.now()} --- ")
+    print(f'--- User {locators.email}, System ID {user_system_id} is deleted  at:{datetime.datetime.now()} --- ')
 
     sleep(0.25)
 
