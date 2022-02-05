@@ -1,9 +1,22 @@
 __author__ = 'tk'
+
 import time
 from time import sleep
 import copy
 import random
+from faker import Faker
 
+fake = Faker(locale='en_CA')
+
+
+# PYTHON IMPORT
+# In Python, you use the 'import' keyword to make code in one module available in another.
+# Imports in Python are important for structuring your code effectively.
+# Using imports properly will make you more productive,
+# allowing you to reuse code while keeping your projects maintainable.
+
+# 1. TIME
+# Python modue called 'time' - add to the top of the file: import time
 # current_date = time.asctime()
 # print('~*~*~*~*~*~*~*~*~*~*~*~')
 # print(f'Test started {current_date}')
@@ -14,14 +27,16 @@ import random
 #     seconds -=1
 #     sleep(1)
 
+# 2. COPY
+# Python module called 'copy'  - add to the top of the file: import copy
 
-# Python module called 'copy'
-
-# ninjago = ['Lloyd', 'Kai', 'Nya', 'Cole', 'Jay'] # make a list of items
-# new_list = copy.copy(ninjago)
+# name_list = ['Bryan', 'Kate', 'Maria', 'Alice', 'Jayson'] # make a list of items
+# new_list = copy.copy(name_list)
 # print(new_list)
 
-# Python module called 'random'
+# 3. RANDOM
+
+# Python module called 'random'  - add to the top of the file: import random
 # method to generate random integer numbers is RANDINT
 # a = random.randint(1111,9999)
 # print(f'The random int is {a}')
@@ -46,7 +61,7 @@ import random
 # print(f'Generate random integer from to {start_n, stop_n}')
 # print(f'The random dynamic int number is: {float_n}')
 
-#Program will generate list of values based on user's input
+# Program will generate list of values based on user's input
 # fruit = []
 # num = int(input('Enter the number of fruits you want to eat: '))
 # for d in range(num):
@@ -59,7 +74,7 @@ def select_fruit():
     fruit = []
     num = int(input('Enter the number of fruits you have: '))
     for d in range(num):
-        i = input(f'Enter fruit {d+1} of {num}: ')
+        i = input(f'Enter fruit {d + 1} of {num}: ')
         fruit.append(i)
     print(f'Random choice is {random.choice(fruit)}')
 
@@ -71,4 +86,9 @@ def select_fruit():
 # print(f'Third call ----------------------')
 # select_fruit()
 
-
+# External Python library called 'Faker'
+# to use, requires 3 steps:
+# Step 1 Instal Faker Library via Python Packae installer
+# Step 2 add to the top of the file: from faker import Faker
+# Step 3 create a variable and set the locale: fake = Faker(locale='en_CA')
+# To use: email = fake.email()
