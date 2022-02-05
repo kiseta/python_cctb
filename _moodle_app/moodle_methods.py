@@ -253,8 +253,8 @@ def logger():
     sys.stdout = log_file
     print(f'{datetime.datetime.now()}'
           f'\nEmail: {locators.email}'
-          f'\nUsername: {locators.new_username}'
-          f'\nPassword: {locators.new_password} '
+          f'\nUsername, Password: {locators.new_username}, {locators.new_password}'
+          f'\nMoodle ID:{user_system_id}'
           f'\n{"-----~*~-----" * 3}')
     sys.stdout = old_instance
     log_file.close()
