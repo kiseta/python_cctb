@@ -246,10 +246,25 @@ def delete_user():
     # breakpoint()
 
 
-def logger():
+def logger_tab():
     # create variable to store the file content
     old_instance = sys.stdout
     log_file = open('message.log', 'a') # open log file and append a record
+    sys.stdout = log_file
+    print(f'{user_system_id}\t'
+          f'{locators.email}\t'
+          f'{locators.new_username}'
+          f'\t{locators.new_password}'
+          f'\t{datetime.datetime.now()}\t'
+          f'created')
+    sys.stdout = old_instance
+    log_file.close()
+
+
+def logger():
+    # create variable to store the file content
+    old_instance = sys.stdout
+    log_file = open('message.log', 'a') # open log file for appending (a) and append a record
     sys.stdout = log_file
     print(f'{datetime.datetime.now()}'
           f'\nEmail: {locators.email}'

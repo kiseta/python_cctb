@@ -1,3 +1,7 @@
+from faker import Faker
+
+fake = Faker(locale='en_CA')
+
 s = 'http://52.39.5.126/user/view.php?id=8769&course=1'
 start = '='
 end = '&'
@@ -21,3 +25,12 @@ h = 'http://52.39.5.126/user/view.php?id=543543'
 print(h[h.find('=') + 1 : len(h)])
 
 dh = 'http://52.39.5.126/admin/user.php?sort=name&dir=ASC&perpage=30&page=0&delete=1356&sesskey=EPuIOUEm0h'
+print(dh[dh.find('delete=') + len('delete=') : dh.rfind('&')])
+start = dh.find('delete=') + len('delete=')
+end = dh.rfind('&')
+print(dh[start : end])
+
+email = fake.email()
+print(email)
+address = fake.address()#.replace('\n', " ")
+print(address)

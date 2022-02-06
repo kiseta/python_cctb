@@ -3,27 +3,31 @@ __author__ = 'tk'
 # program where we have a function with additional data (arguments)
 
 # write second
-def prompt():
-    return int(input('Enter a number: '))
+def prompt(n):
+    return int(input(f'Enter integer {n}: '))
 
 # write first, addition first then multiplication (after prompt)
 def addition(a, b, c, d):
-    print(f' The sum of two arguments a and b is: {a + b}')
-    print(f' The product of arguments c and d is: {c * d}')
+    print(f' The sum of {a} and {b} is: {a + b}')
+    print(f' The product of {c} and {d} is: {c * d}')
 
 #addition (1, 3) # before adding multiplicaton
-addition(prompt(), prompt(), prompt(), prompt())
+addition(prompt('a'), prompt('b'), prompt('c'), prompt('d'))
 
 def calculations(a, b, c):
-    print(f'Result {a + b - c}')
+    print(f'Result of {a} + {b} - {c} is: {a + b - c}')
 
-calculations(3, 10, 999)
+calculations(prompt('a'), prompt('b'), prompt('c'))
+
+
+# Program display a message multiple times using function and
 
 def display_message(n):
     for i in range(n):
         print('Hello, World!')
 
-display_message(5)
+print('This program will display a message as many times as you want: ')
+display_message(int(input(f'Enter a number: ')))
 
 
 def calc(a, b, sign):
@@ -41,27 +45,28 @@ def calc(a, b, sign):
         print(f'Something is wrong. Please check your arguments {a, b, sign}')
 
 # Addition
-calc(5, 5, input(f'Enter sign operator: '))
+calc(prompt('a'), prompt('b'), input(f'Enter sign operator: '))
 # Subtraction
-calc(5, 5, input(f'Enter sign operator: '))
+calc(prompt('a'), prompt('b'), input(f'Enter sign operator: '))
 # Multiplication
-calc(5, 5, input(f'Enter sign operator: '))
+calc(prompt('a'), prompt('b'), input(f'Enter sign operator: '))
 # Division
-calc(5, 5, input(f'Enter sign operator: '))
+calc(prompt('a'), prompt('b'), input(f'Enter sign operator: '))
 # Division
-calc(5, 5, input(f'Enter sign operator: '))
+calc(prompt('a'), prompt('b'), input(f'Enter sign operator: '))
 
 
-def calculations(a, b, c, d):
+def calculations1(a, b, c, d):
     print(f'Result {(a + b - c) * d}')
 
 numlist = [3, 5, 7, 9]
-calculations(*numlist) # use * arguments unpacking operator
+print(numlist)
+calculations1(*numlist) # use * arguments unpacking operator
 
-def foo(a, b, c, d):
+def pass_collection(a, b, c, d):
   print(a, b, c, d)
 
 l = [0, 1]
 d = {"c":3, "d":2}
 
-foo(*l, **d)
+pass_collection(*l, **d)  # pass collection using * unpacking operator

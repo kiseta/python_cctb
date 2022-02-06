@@ -138,3 +138,22 @@ print(z * 2)
 x = str(x) # convert integer to string
 y = str(y) # convert float to string
 z = str(z) # convert float to string
+
+s = 'http://52.39.5.126/user/view.php?id=8769&course=1'
+start = '='
+end = '&'
+print(s.find(start))
+print(s.rfind(end))
+print(s[s.find(start) + len(start) : s.rfind('&')])
+
+
+# find() will return the index of the first match. But
+# rfind() will give you the last occurence of the pattern
+h = 'http://52.39.5.126/user/view.php?id=543543'
+print(h[h.find('=') + 1 : len(h)])
+
+dh = 'http://52.39.5.126/admin/user.php?sort=name&dir=ASC&perpage=30&page=0&delete=1356&sesskey=EPuIOUEm0h'
+print(dh[dh.find('delete=') + len('delete=') : dh.rfind('&')])
+start = dh.find('delete=') + len('delete=')
+end = dh.rfind('&')
+print(dh[start : end])

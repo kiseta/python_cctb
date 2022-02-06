@@ -1,11 +1,7 @@
 __author__ = 'tk'
-
-# --------------------- IMPORT -----------------------------
 import copy
 import random
 from random import randint, uniform, choice
-
-
 from time import sleep, asctime
 
 current_date = asctime()
@@ -50,25 +46,25 @@ print(f'The random dynamic float number is {float_number}')
 
 
 # Python choice method from the random library
-list_of_all = ['Ninjago', 38, True, 25.0, 'Python']
+list_of_all = ['Moodle', 38, True, 25.0, 'Python']
 print(f'My choice from this list is {random.choice(list_of_all)}')
 
 # Program will generate list of values based on user's input
-desserts = []
-numbers_of_elements = int(input('Enter how many desserts you wanna eat today: '))
+fruits = []
+numbers_of_elements = int(input('Enter the number of fruits you wanna eat today: '))
 for d in range(numbers_of_elements):
-    i = input(f'Enter any {numbers_of_elements} desserts: ')
-    desserts.append(i)
-print(f'Random choice is {random.choice(desserts)}')
+    i = input(f'Enter name of the fruit {d}: ')
+    fruits.append(i)
+print(f'Random choice is {random.choice(fruits)}')
 
 #---------------------------- FUNCTIONS -----------------------------------------------------------------
 
 # Function definition
 def check_desserts():
     desserts = []
-    numbers_of_elements = int(input('Enter how many desserts you wanna eat today: '))
+    numbers_of_elements = int(input('Enter how many fruits you wanna eat today: '))
     for d in range(numbers_of_elements):
-        i = input(f'Enter any {numbers_of_elements} desserts: ')
+        i = input(f'Enter any {numbers_of_elements} fruits: ')
         desserts.append(i)
     print(f'Random choice is {random.choice(desserts)}')
 
@@ -86,22 +82,22 @@ check_desserts()
 
 
 # Function definition
-def check_desserts():
+def check_fruits():
     desserts = []
-    numbers_of_elements = int(input('Enter how many desserts you wanna eat today: '))
+    numbers_of_elements = int(input('Enter how many fruits you wanna eat today: '))
     for d in range(numbers_of_elements):
-        i = input(f'Enter any {numbers_of_elements} desserts: ')
+        i = input(f'Enter any {numbers_of_elements} fruits: ')
         desserts.append(i)
     print(f'Random choice is {random.choice(desserts)}')
 
 
 # Function call
 print(f'First call')
-check_desserts()
+check_fruits()
 print(f'Second call')
-check_desserts()
+check_fruits()
 print(f'Third call')
-check_desserts()
+check_fruits()
 
 # CTRL+D - duplicate on Windows PC
 # CMD+D - duplicate on Mac

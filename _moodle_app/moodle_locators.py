@@ -31,7 +31,7 @@ print(email)
 moodle_net_profile = f'https://moodle.net/{new_username}'
 city = fake.city()
 country = fake.current_country()
-description = fake.sentence(nb_words = 75, variable_nb_words = True)
+description = f'User added by {moodle_username} via Selenium Python Automation Framework' # fake.sentence(nb_words = 75, variable_nb_words = True)
 pic_desc = f'image submitted by {first_name} {last_name}'
 list_of_interests = [fake.job(),fake.job(),fake.job(),fake.job()]
 address = f'{fake.street_address()} {city} {fake.province_abbr()} {fake.postalcode()} {country}'
