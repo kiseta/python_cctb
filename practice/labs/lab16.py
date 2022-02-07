@@ -19,7 +19,7 @@ from selenium.webdriver.common.by import By
 # 10. Close the browser and display a user-friendly message.
 
 # initialize chrome driver object
-s = Service(executable_path='../chromedriver.exe')
+s = Service(executable_path='../../chromedriver.exe')
 driver = webdriver.Chrome(service = s)
 
 

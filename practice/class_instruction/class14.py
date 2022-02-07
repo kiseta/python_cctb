@@ -1,7 +1,7 @@
 __author__ = 'tk'
 import copy
 import random
-from random import randint, uniform, choice
+from random import randint, uniform
 from time import sleep, asctime
 
 current_date = asctime()
@@ -49,55 +49,56 @@ print(f'The random dynamic float number is {float_number}')
 list_of_all = ['Moodle', 38, True, 25.0, 'Python']
 print(f'My choice from this list is {random.choice(list_of_all)}')
 
-# Program will generate list of values based on user's input
+# Program will generate list of values based on user's input and pick a random value
 fruits = []
-numbers_of_elements = int(input('Enter the number of fruits you wanna eat today: '))
+numbers_of_elements = int(input('How many fruits are in the basket?: '))
 for d in range(numbers_of_elements):
-    i = input(f'Enter name of the fruit {d}: ')
+    i = input(f'Enter name of the fruit {d}+1: ')
     fruits.append(i)
 print(f'Random choice is {random.choice(fruits)}')
 
 #---------------------------- FUNCTIONS -----------------------------------------------------------------
 
 # Function definition
-def check_desserts():
+def pick_dessert():
     desserts = []
-    numbers_of_elements = int(input('Enter how many fruits you wanna eat today: '))
+    numbers_of_elements = int(input('How many desserts are on the menu: '))
     for d in range(numbers_of_elements):
-        i = input(f'Enter any {numbers_of_elements} fruits: ')
+        i = input(f'Enter choice number {d}+1: ')
         desserts.append(i)
     print(f'Random choice is {random.choice(desserts)}')
 
 
 # Function call
 print(f'First call')
-check_desserts()
+pick_dessert()
 print(f'Second call')
-check_desserts()
+pick_dessert()
 print(f'Third call')
-check_desserts()
+pick_dessert()
 
 # CTRL+D - duplicate on Windows PC
 # CMD+D - duplicate on Mac
 
 
 # Function definition
-def check_fruits():
-    desserts = []
-    numbers_of_elements = int(input('Enter how many fruits you wanna eat today: '))
-    for d in range(numbers_of_elements):
-        i = input(f'Enter any {numbers_of_elements} fruits: ')
-        desserts.append(i)
-    print(f'Random choice is {random.choice(desserts)}')
+def pick_fruit():
+    fruit_list = []
+    total = int(input('How many fruits are in the basket?: '))
+    for d in range(total):
+        i = input(f'Enter name of the fruit {d}+1: ')
+        fruit_list.append(i)
+    print(f'Thank you! Your random fruit today is:')
+    print(f'Random fruit: {random.choice(fruit_list)}')
 
 
 # Function call
 print(f'First call')
-check_fruits()
+pick_fruit()
 print(f'Second call')
-check_fruits()
+pick_fruit()
 print(f'Third call')
-check_fruits()
+pick_fruit()
 
 # CTRL+D - duplicate on Windows PC
 # CMD+D - duplicate on Mac

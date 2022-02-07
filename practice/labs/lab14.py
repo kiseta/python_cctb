@@ -1,6 +1,7 @@
 __author__ = 'tk'
 import datetime
 from time import sleep
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -14,7 +15,7 @@ vsl_page_title = 'Virtual Student Lounge | CCTB'
 
 #-------------------------------------------------
 
-s = Service(executable_path='../chromedriver.exe')
+s = Service(executable_path='../../chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 
 

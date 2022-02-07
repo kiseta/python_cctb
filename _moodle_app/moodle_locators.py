@@ -24,6 +24,7 @@ first_name = fake.first_name()
 last_name = fake.last_name()
 middle_name = fake.first_name()
 full_name = f'{first_name} {last_name}'
+# new_username = fake.user_name()
 new_username = f'{first_name}{last_name}'.lower()
 new_password = fake.password()
 email = f'{new_username}@{fake.free_email_domain()}' #fake.email()

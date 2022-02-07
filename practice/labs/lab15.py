@@ -16,7 +16,7 @@ search_term_page_title = 'Python (programming language) - Wikipedia'
 hr = '--------------------------------------------\n' # horizontal rule divider
 #-------------------------------------------------
 
-s = Service(executable_path='../chromedriver.exe')
+s = Service(executable_path='../../chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 
 

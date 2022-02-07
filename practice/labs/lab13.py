@@ -1,7 +1,8 @@
 __author__ = 'tk'
 
-from selenium import webdriver  # import webdriver
 from time import sleep
+
+from selenium import webdriver  # import webdriver
 
 # -------------PAGE ELEMENTS SECTION -----------------------------------
 base_url = 'https://www.google.ca/'

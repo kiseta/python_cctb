@@ -1,7 +1,8 @@
-import time
-from time import sleep
 import copy
 import random
+import time
+from time import sleep
+
 from faker import Faker
 
 fake = Faker(locale='en_CA')
@@ -94,3 +95,6 @@ email = fake.email()
 print(email)
 address = fake.address()#.replace('\n', " ")
 print(address)
+
+username = fake.user_name()
+print(username)
