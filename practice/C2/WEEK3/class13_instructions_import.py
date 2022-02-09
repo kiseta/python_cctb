@@ -5,7 +5,7 @@ from time import sleep
 
 from faker import Faker
 
-fake = Faker(locale='en_CA')
+fake = Faker(locale='en_CA') # initialize the external library
 
 
 # PYTHON IMPORT
@@ -62,13 +62,13 @@ print(f'The random dynamic int number is: {float_n}')
 
 # Program will generate list of values based on user's input
 fruit = []
-num = int(input('Enter the number of fruits you want to eat: '))
+num = int(input('Enter the number of fruits you have: '))
 for d in range(num):
-    i = input(f'Enter any {num} fruits: ')
+    i = input(f'Enter fruit {d + 1} of {num}: ')
     fruit.append(i)
 print(f'Random choice is {random.choice(fruit)}')
 
-# define function
+# transfer the code above to the function
 def select_fruit():
     fruit = []
     num = int(input('Enter the number of fruits you have: '))
@@ -80,21 +80,28 @@ def select_fruit():
 # call function
 print(f'First call ----------------------')
 select_fruit()
-print(f'Second call ----------------------')
-select_fruit()
-print(f'Third call ----------------------')
-select_fruit()
+# print(f'Second call ----------------------')
+# select_fruit()
+# print(f'Third call ----------------------')
+# select_fruit()
 
 # External Python library called 'Faker'
 # to use, requires 3 steps:
 # Step 1 Instal Faker Library via Python Packages installer
 # Step 2 Add to the top of the file: from faker import Faker
-# Step 3 create a variable and set the locale: fake = Faker(locale='en_CA')
+# Step 3 Initialize the library - create a variable and set the locale: fake = Faker(locale='en_CA')
 # To use:
 email = fake.email()
 print(email)
 address = fake.address()#.replace('\n', " ")
 print(address)
+print(address.replace('\n', " "))
 
 username = fake.user_name()
 print(username)
+
+#password = fake.password(length=30)
+num = int(input(f'Please enter the number of characters for your password: '))
+for i in range(3):
+    password = fake.password(length=num)
+    print(f'Here is a nice password for you: ', password)

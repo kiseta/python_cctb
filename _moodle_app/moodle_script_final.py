@@ -135,6 +135,7 @@ def create_new_user():
     # select an image to upload
     #img_path = ['System', 'Technology', 'Software Testing', 'Software Manual Testing', 'Course image','Mannual-Testing.jpg']
     img_path = ['System', 'sl_Frozen', 'sl_How to build a snowman', 'Course image', 'gieEd4R5T.png']
+    #System sl_Frozen sl_How to build a snowman Course image
     # img_path = ['Private files', 'femaleyes.png']
     for p in img_path:
         # driver.find_element(By.XPATH, f'//span[contains(.,"{p}")]').click()
@@ -240,8 +241,6 @@ def delete_user():
     search_user()
 
     # validate that email address and the delete buttons are displayed
-    # How to build the locator:
-    # use the following tag/parameter in the order of precedence:
     # 1. ID
     # 2. NAME
     # 3. LINK, PARTIAL LINK
@@ -289,3 +288,56 @@ def logger(action):
           f'{action}')
     sys.stdout = old_instance
     log_file.close()
+
+
+def logger_fun():
+    # create variable to store the file content
+    old_instance = sys.stdout
+    log_file = open('messageBKP.log', 'a') # open log file for appending (a) and append a record
+    sys.stdout = log_file
+    print(f'{datetime.datetime.now()}'
+          f'\nEmail: {locators.email}'
+          f'\nUsername, Password: {locators.new_username}, {locators.new_password}'
+          f'\nMoodle ID:{user_system_id}'
+          f'\n{"-----~*~-----" * 3}')
+    sys.stdout = old_instance
+    log_file.close()
+
+
+# -------------------- CREATE A NEW USER -----------------------
+setUp()  # Open Web Browser
+
+print(f'\n--- Create New User Test  -----------------------------')
+
+log_in(locators.moodle_username, locators.moodle_password)  # Login
+create_new_user()  # Create New User
+search_user()  # Check New User created
+log_out()  # Logout
+
+print(f'--- Create New User Test --- PASSED -----------------✔\n')
+sleep(0.5)
+
+# -------------------- LOGIN AS NEW USER -----------------------
+
+# setUp() # Open Web Browser
+print(f'\n--- Loging as New User Test  -----------------------------')
+
+log_in(locators.new_username, locators.new_password)  # Login
+check_new_user_can_login()  # check new user
+log_out()  # Logout
+
+print(f'--- Loging as New User Test --- PASSED ---------------✔\n')
+sleep(0.5)
+
+# ----------------------- DELETE USER -----------------------
+print(f'\n--- Delete New User Test  -----------------------------')
+
+log_in(locators.moodle_username, locators.moodle_password)  # Login
+delete_user()  # delete user
+log_out()  # Logout
+
+print(f'--- Delete New User Test --- PASSED -------------------✔\n')
+
+tearDown()  # Close browser
+
+logger()
