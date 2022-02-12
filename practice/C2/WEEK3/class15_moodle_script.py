@@ -10,7 +10,6 @@ from selenium.webdriver.common.by import By
 # This method solves the "DeprecateWarning" error that occurs in Selenium 4 and above.
 # 1. Comment out, or remove the previous method which was: driver = webdriver.Chrome('chromedriver.exe path')
 # 2. Add following code
-
 s = Service(executable_path='chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 

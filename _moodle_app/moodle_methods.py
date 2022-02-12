@@ -4,19 +4,18 @@ import datetime
 import sys
 from time import sleep
 
+import moodle_locators as locators
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-import moodle_locators as locators
-
 # This method solves the "DeprecateWarning" error that occurs in Selenium 4 and above.
 # 1. Comment out, or remove the previous method which was: driver = webdriver.Chrome('chromedriver.exe path')
 # 2. Add following code
 
-s = Service(executable_path='../chromedriver.exe')
-driver = webdriver.Chrome(service=s)
+s = Service(executable_path ='../chromedriver.exe')
+driver = webdriver.Chrome(service = s)
 user_system_id = ''
 
 # initialize chrome driver object
@@ -93,6 +92,7 @@ def create_new_user():
     sleep(0.25)
     print(f'--- Navigate to Add a new user Page - Page title: {driver.title} --- ')
     # Enter fake data into username field
+
     driver.find_element(By.ID, 'id_username').send_keys(locators.new_username)  #
     sleep(0.25)
     # click to activate password filed
@@ -133,9 +133,8 @@ def create_new_user():
     sleep(0.25)
 
     # select an image to upload
-    #img_path = ['System', 'Technology', 'Software Testing', 'Software Manual Testing', 'Course image','Mannual-Testing.jpg']
+    # img_path = ['System', 'Technology', 'Software Testing', 'Software Manual Testing', 'Course image','Mannual-Testing.jpg']
     img_path = ['System', 'sl_Frozen', 'sl_How to build a snowman', 'Course image', 'gieEd4R5T.png']
-    # img_path = ['Private files', 'femaleyes.png']
     for p in img_path:
         # driver.find_element(By.XPATH, f'//span[contains(.,"{p}")]').click()
         driver.find_element(By.LINK_TEXT, p).click()
@@ -211,7 +210,6 @@ def search_user():
                 global user_system_id
                 user_system_id = href[href.find('=') + 1 : href.rfind('&')]
                 print(f'--- User: {locators.email}, System ID: {user_system_id} is found --- ')
-
                 return user_system_id
 
             # breakpoint()
@@ -289,3 +287,39 @@ def logger(action):
           f'{action}')
     sys.stdout = old_instance
     log_file.close()
+
+# # -------------------- CREATE A NEW USER -----------------------
+# setUp()  # Open Web Browser
+#
+# print(f'\n--- Create New User Test  -----------------------------')
+#
+# log_in(locators.moodle_username, locators.moodle_password)  # Login
+# create_new_user()  # Create New User
+# search_user()  # Check New User created
+# log_out()  # Logout
+#
+# print(f'--- Create New User Test --- PASSED -----------------✔\n')
+# sleep(0.5)
+#
+# # -------------------- LOGIN AS NEW USER -----------------------
+#
+# # setUp() # Open Web Browser
+# print(f'\n--- Loging as New User Test  -----------------------------')
+#
+# log_in(locators.new_username, locators.new_password)  # Login
+# check_new_user_can_login()  # check new user
+# log_out()  # Logout
+#
+# print(f'--- Loging as New User Test --- PASSED ---------------✔\n')
+# sleep(0.5)
+#
+# # ----------------------- DELETE USER -----------------------
+# print(f'\n--- Delete New User Test  -----------------------------')
+#
+# log_in(locators.moodle_username, locators.moodle_password)  # Login
+# delete_user()  # delete user
+# log_out()  # Logout
+#
+# print(f'--- Delete New User Test --- PASSED -------------------✔\n')
+#
+# tearDown()  # Close browser

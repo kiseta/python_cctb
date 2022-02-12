@@ -1,13 +1,14 @@
 __author__ = 'tk'
 
+# Start new file class9_type_casting_review
 # VARIABLE TYPES AND TYPE CASTING REVIEW
 #####################################################
 # Reassigning Variables / Type Castings
 
-int()
-float()
-str()
-bool()
+int()  # full numbers
+float()  # floating point numbers
+str()  # strings
+bool() # logical operators, data types
 
 # Task 1. Convert data types into integers
 a = int(1)
@@ -35,9 +36,10 @@ print(h, i * 2, j, k)
 # Task 4. We want to control float number decimals
 # EXAMPLE 1
 pi = 3.14159
-print('Print %s' % 'Hello, World!')
-print('%f' % pi)
-print('%.2f' % pi)
+print('Print %s' % 'Hello, World!')  # %s - string formatter
+print('%f' % pi)  #  %f float formatter
+print('%.2f' % pi)  # 2 decimal points - for display
+print(round(pi))  # correct way to control decimal places for floats using math function round()
 
 
 # EXAMPLE 2
@@ -51,6 +53,8 @@ print('%f' % given_float_number) # METHOD 3 NO DECIMAL PLACES IDENTIFIER
 print('%.2f' % given_float_number) # METHOD 3 WITH DECIMAL PLACES IDENTIFIER
 
 # --------------- PYTHON OPERATORS --------------------
+
+# start new file class9_operators
 
 # Operators are used to perform operations on variables and values.
 
@@ -129,7 +133,9 @@ print(98 % 9)
 #####################################################
 # Data types / objects in Python
 
-# Four types: LIST, TUPLE, SET, DICTIONARY
+# create new file class9_list_set_tuple_dictionary
+
+# Four collection data types: LIST, TUPLE, SET, DICTIONARY
 
 ######################################################
 # 1. LIST
@@ -141,23 +147,23 @@ list_of_something=[] # make a list with square brackets
 list_of_names = ['John',  'Anna',  'James',  'Kim',  'Ben',  'Ray']
 print(list_of_names)
 
-# read values by calling a specific index
+# read value by calling a specific index, value 1 is read by calling index 0
 print(list_of_names[0])
 
 # update value in the list
 list_of_names[3] = 'Jason'
 print(list_of_names)
 
-# append
+# append (add) new value to the list
 list_of_names.append('Mike')
 print(list_of_names)
 
-# remove value
+# remove value the value using pop() command
 list_of_names.pop(0)
 print(list_of_names)
 
 # clear
-#list_of_names.clear()
+list_of_names.clear()
 print(len(list_of_names))
 
 
@@ -168,7 +174,7 @@ tropical_list = ['Durian', 'Mangosteen', 'Jackfruit', 'Cherimoya', 'Lychee']
 # Method 1: simple print()
 print(tropical_list)
 
-# Method 2: print using for loop
+# Method 2: print using for loop, print every value on new line
 for fruit in tropical_list:
     print(fruit)
 

@@ -1,15 +1,13 @@
 __author__ = 'tk'
-
 import datetime
 import sys
 from time import sleep
 
+import moodle_locators as locators
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-
-import moodle_locators as locators
 
 # This method solves the "DeprecateWarning" error that occurs in Selenium 4 and above.
 # 1. Comment out, or remove the previous method which was: driver = webdriver.Chrome('chromedriver.exe path')
@@ -35,10 +33,10 @@ def setUp():
 
     # check the correct URL and the correct title
     if driver.current_url == locators.moodle_url and driver.title == locators.moodle_home_page_title:
-        print(f'Moodle Homepage URL:{driver.current_url} - Moodle Homepage title: {driver.title} ---')
+        print(f'{locators.app} Homepage URL:{driver.current_url} - Homepage title: {driver.title} ---')
     else:
         print(driver.current_url)
-        print(f'We are not on Moodle Home Page. Check your code')
+        print(f'We are not on {locators.app} Home Page. Check your code')
         tearDown()
 
 # Method to close web browser
@@ -61,7 +59,7 @@ def log_in(username, password):
             driver.find_element(By.ID, 'password').send_keys(password)
             sleep(0.25)
             driver.find_element(By.ID, 'loginbtn').click()
-            if driver.title == 'Dashboard' and driver.current_url == locators.moodle_dashboard_url:
+            if driver.title == locators.moodle_dashboard_title and driver.current_url == locators.moodle_dashboard_url:
                 assert driver.current_url == locators.moodle_dashboard_url
                 print(f'--- Navigate to Dashboard Page - Page Title: {driver.title} --- ')
                 print(f'--- User: "{username}/{password}" login successful! --- ')
@@ -92,6 +90,7 @@ def create_new_user():
     assert driver.find_element(By.LINK_TEXT, 'Add a new user').is_displayed()
     sleep(0.25)
     print(f'--- Navigate to Add a new user Page - Page title: {driver.title} --- ')
+
     # Enter fake data into username field
     driver.find_element(By.ID, 'id_username').send_keys(locators.new_username)  #
     sleep(0.25)
@@ -339,5 +338,3 @@ log_out()  # Logout
 print(f'--- Delete New User Test --- PASSED -------------------✔\n')
 
 tearDown()  # Close browser
-
-logger()

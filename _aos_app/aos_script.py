@@ -10,8 +10,8 @@ from selenium.webdriver.common.by import By
 # This method solves the "DeprecateWarning" error that occurs in Selenium 4 and above.
 # 1. Comment out, or remove the previous method which was: driver = webdriver.Chrome('chromedriver.exe path')
 # 2. Add following code
-s = Service(executable_path='../chromedriver.exe')
-driver = webdriver.Chrome(service = s)
+s = Service(executable_path='chromedriver.exe')
+driver = webdriver.Chrome(service=s)
 
 # initialize chrome driver object
 # driver = webdriver.Chrome('./chromedriver.exe')  # relative path
@@ -91,13 +91,13 @@ def create_new_user():
         driver.find_element(By.ID, 'menuUserLink').click()
         sleep(2)
         assert driver.find_element(By.LINK_TEXT, 'CREATE NEW ACCOUNT')
-        if driver.find_element(By.LINK_TEXT, 'CREATE NEW ACCOUNT'):
-            print('We are at the Login Pop Up screen!')
-            driver.find_element(By.LINK_TEXT, 'CREATE NEW ACCOUNT').click()
+        driver.find_element(By.LINK_TEXT, 'CREATE NEW ACCOUNT').click()
+
+
 
 
 setUp()
-#create_new_user()
-log_in()
-log_out()
+create_new_user()
+#log_in()
+#log_out()
 tearDown()
