@@ -1,5 +1,13 @@
 # CONDITIONAL STATEMENTS
 
+# ==	Equal	x == y
+# !=	Not equal	x != y
+# >	Greater than	x > y
+# <	Less than	x < y
+# >=	Greater than or equal to	x >= y
+# <=	Less than or equal to	x <= y
+
+
 # COMPARISSON OPERATORS TABLE
 # < LESS THAN
 print(3 < 5)
@@ -29,8 +37,18 @@ actual_title = "404 - Page Not found"
 print(expected_title == actual_title)
 print(expected_title != actual_title)
 
+print('--------------- test negaitive ---------------------------')
 expected_title = "CCTB - Welcome!"
 actual_title = "404 - Page Not found"
+
+if expected_title == actual_title:
+    print('CCTB Website is launched')
+else:
+    print('Website is down. Contact your system administrator')
+
+print('--------------- test positive ---------------------------')
+expected_title = "CCTB - Welcome!"
+actual_title = "CCTB - Welcome!"
 
 if expected_title == actual_title:
     print('CCTB Website is launched')
@@ -137,3 +155,28 @@ if app_url == actual_app_url and home_page_title == actual_home_page_title:
         print(f'{app} Login Page is not diplayed! Check your code!')
 else:
     print(f'{app} Home Page is not diplayed! Check your code!')
+
+# 15% on the first $50,197 of taxable income, plus
+# 20.5% on the next $50,195 of taxable income (on the portion of taxable income over 50,197 up to $100,392), plus
+# 26% on the next $55,233 of taxable income (on the portion of taxable income over $100,392 up to $155,625), plus
+# 29% on the next $66,083 of taxable income (on the portion of taxable income over 155,625 up to $221,708), plus
+# 33% of taxable income over $221,708
+
+amount = int(input('Please enter annual income amount: '))
+
+if amount <= 50197:
+    tax = (amount * .15)
+    netpay = amount - tax
+    print(f'Amount: {amount}\nTax: {tax}\nNetPay: {netpay}')
+elif amount > 50197 and amount <= 100392:
+    tax = (50197 * .15) + ((amount - 50197) * .205)
+    netpay = amount - tax
+    print(f'Amount: {amount}\nTax: {tax}\nNetPay: {netpay}')
+elif amount > 100392 and amount <= 155625:
+    tax = (50197 * .15) + (50197 * .205) + ((amount - 50197 - 50197) * .26)
+    netpay = amount - tax
+    print(f'Amount: {amount}\nTax: {tax}\nNetPay: {netpay}')
+elif amount > 155625 and amount <= 221708:
+    tax = (50197 * .15) + (50197 * .205) + (55233 * .205) + (66083 * .26) + ((amount - 50197 - 50197 - 55233) * .26)
+    netpay = amount - tax
+    print(f'Amount: {amount}\nTax: {tax}\nNetPay: {netpay}')

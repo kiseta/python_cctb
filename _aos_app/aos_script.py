@@ -13,12 +13,6 @@ from selenium.webdriver.common.by import By
 s = Service(executable_path='chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 
-# initialize chrome driver object
-# driver = webdriver.Chrome('./chromedriver.exe')  # relative path
-# initialize chrome driver object
-# driver = webdriver.Chrome(r'C:\Automation\PythonPRJ\moodle_app\chromedriver.exe')
-# right-click chromedriver.exe, copy Path > Absolute Path
-
 
 # ------------------ AOS WEB ELEMENTS ------------------------------
 app = 'Advantage Online Shopping'
@@ -79,7 +73,8 @@ def log_in():
 def log_out():
     driver.find_element(By.LINK_TEXT, 'aosusr999').click()
     sleep(0.25)
-    driver.find_element(By.XPATH, '//a/div/label[contains(.,"Sign out")]').click()
+    #driver.find_element(By.XPATH, '//a/div/label[contains(.,"Sign out")]').click()
+    driver.find_element(By.LINK_TEXT, 'Sign out').click()
     sleep(0.25)
     if driver.current_url == base_url:
         print(f'Logout Successful! at {datetime.datetime.now()}')

@@ -14,9 +14,10 @@ from selenium.webdriver.support.ui import Select
 # 1. Comment out, or remove the previous method which was: driver = webdriver.Chrome('chromedriver.exe path')
 # 2. Add following code
 
-s = Service(executable_path ='../chromedriver.exe')
-driver = webdriver.Chrome(service = s)
+s = Service(executable_path='chromedriver.exe')
+driver = webdriver.Chrome(service=s)
 user_system_id = ''
+
 
 # initialize chrome driver object
 # driver = webdriver.Chrome('./chromedriver.exe')  # relative path
@@ -40,6 +41,7 @@ def setUp():
         print(f'We are not on Moodle Home Page. Check your code')
         tearDown()
 
+
 # Method to close web browser
 def tearDown():  # function to end the session
     if driver is not None:
@@ -48,6 +50,7 @@ def tearDown():  # function to end the session
         sleep(0.5)
         driver.close()
         driver.quit()
+
 
 # Login with dynamic user name and password
 def log_in(username, password):
@@ -67,6 +70,7 @@ def log_in(username, password):
             else:
                 print(f'We\'re not at the dashboard. Try again.')
 
+
 # Logout method
 def log_out():
     driver.find_element(By.CLASS_NAME, 'userpicture').click()
@@ -76,6 +80,7 @@ def log_out():
     if driver.current_url == locators.moodle_url:
         print(f'Logout Successful! at {datetime.datetime.now()}')
     # breakpoint()
+
 
 #
 def create_new_user():
@@ -119,7 +124,7 @@ def create_new_user():
     # select an option 'Allow every one to see my email address'
     Select(driver.find_element(By.ID, 'id_country')).select_by_visible_text(locators.country)
     sleep(0.25)
-    # select an option 'Allow every one to see my email address'
+    # select an option 'America/Vancouver' <-- give this as assignment to students
     Select(driver.find_element(By.ID, 'id_timezone')).select_by_visible_text('America/Vancouver')
     sleep(0.25)
     driver.find_element(By.ID, 'id_description_editoreditable').clear()
@@ -140,6 +145,7 @@ def create_new_user():
         driver.find_element(By.LINK_TEXT, p).click()
         sleep(0.25)
 
+    # select radio button
     driver.find_element(By.XPATH, '//input[@value="4"]').click()
     sleep(0.25)
     driver.find_element(By.XPATH, '//button[contains(.,"Select this file")]').click()
@@ -147,6 +153,7 @@ def create_new_user():
     # enter value to the picture description
     driver.find_element(By.ID, 'id_imagealt').send_keys(locators.pic_desc)
 
+    # populate additional names section
     driver.find_element(By.LINK_TEXT, 'Additional names').click()
     sleep(0.25)
     driver.find_element(By.ID, 'id_firstnamephonetic').send_keys(locators.first_name)
@@ -158,7 +165,7 @@ def create_new_user():
     driver.find_element(By.LINK_TEXT, 'Interests').click()
     sleep(0.25)
 
-    # add multiple insterests
+    # add multiple interests
     for tag in locators.list_of_interests:
         # driver.find_element(By.XPATH, '//div[3]/input').send_keys(tag)
         driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(tag + "\n")
@@ -195,7 +202,8 @@ def search_user():
     # Check we are on the User's Main Page
     if driver.current_url == locators.moodle_users_main_page and driver.title == locators.moodle_users_main_page_title:
         assert driver.find_element(By.LINK_TEXT, "Browse list of users").is_displayed()
-        print('\'Browse list of users\' page is displayed: ', driver.find_element(By.LINK_TEXT, "Browse list of users").is_displayed())
+        print('\'Browse list of users\' page is displayed: ',
+              driver.find_element(By.LINK_TEXT, "Browse list of users").is_displayed())
         if driver.find_element(By.ID, 'fgroup_id_email_grp_label').is_displayed() and \
                 driver.find_element(By.NAME, 'email').is_displayed():
             sleep(0.25)
@@ -208,7 +216,7 @@ def search_user():
                 # capture new user system id
                 href = driver.find_element(By.LINK_TEXT, locators.full_name).get_attribute("href")
                 global user_system_id
-                user_system_id = href[href.find('=') + 1 : href.rfind('&')]
+                user_system_id = href[href.find('=') + 1: href.rfind('&')]
                 print(f'--- User: {locators.email}, System ID: {user_system_id} is found --- ')
                 return user_system_id
 
@@ -254,14 +262,14 @@ def delete_user():
     #  driver.find_element(By.XPATH, f'//a[contains(@href,"delete={user_system_id}")]')
     if driver.find_element(By.XPATH, f'//td[contains(.,"{locators.email}")]').is_displayed and \
             driver.find_element(By.XPATH, f'//a[contains(@href,"delete={user_system_id}")]').is_displayed:
-            #driver.find_element(By.CSS_SELECTOR, f"a[href*='delete={user_system_id}']").is_displayed:
+        # driver.find_element(By.CSS_SELECTOR, f"a[href*='delete={user_system_id}']").is_displayed:
 
-        print('--- Delete Link:', driver.find_element(By.CSS_SELECTOR, f"a[href*='delete']").get_attribute("href"))
-        #driver.find_element(By.CSS_SELECTOR, f"a[href*='delete={user_system_id}']").click()
+        # print('--- Delete Link:', driver.find_element(By.CSS_SELECTOR, f"a[href*='delete']").get_attribute("href"))
+        # driver.find_element(By.CSS_SELECTOR, f"a[href*='delete={user_system_id}']").click()
         driver.find_element(By.XPATH, f'//a[contains(@href,"delete={user_system_id}")]').click()
         sleep(0.25)
         # delete user
-        driver.find_element(By.XPATH, "//button[text()='Delete']").click() # option 1
+        driver.find_element(By.XPATH, "//button[text()='Delete']").click()  # option 1
         # driver.find_element(By.XPATH, "//*[contains(text(), 'Delete')]").click() # option 2 * means any tag
         # driver.find_element(By.XPATH, '//i[@title="Delete"]').click() # option 3# only for i html tag
         print(f'--- User {locators.email}, System ID {user_system_id} is deleted  at:{datetime.datetime.now()} --- ')
@@ -277,7 +285,7 @@ def delete_user():
 def logger(action):
     # create variable to store the file content
     old_instance = sys.stdout
-    log_file = open('message.log', 'a') # open log file and append a record
+    log_file = open('message.log', 'a')  # open log file and append a record
     sys.stdout = log_file
     print(f'{user_system_id}\t'
           f'{locators.email}\t'
@@ -287,6 +295,10 @@ def logger(action):
           f'{action}')
     sys.stdout = old_instance
     log_file.close()
+
+# # Tests execution is moved to moodle_tests.py and handled by the UnitTest
+# # Commented out for Unittest to run the test from the Moodle Tests
+# # uncomment the code to run moodle_methods.py standalone
 
 # # -------------------- CREATE A NEW USER -----------------------
 # setUp()  # Open Web Browser

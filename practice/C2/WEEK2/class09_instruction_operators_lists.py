@@ -72,7 +72,7 @@ print(f'Class currently in session: {in_session}')
 
 # 2. Multiple Assignment
 # 2.1 Multiple Assignment one by one
-season, month, year = 'Winter', 'January', 2022
+season, month, year = 'Winter', 'February', 2022
 print(season, month, year)
 
 # 2.2 Chained Assignment
@@ -97,11 +97,11 @@ print(False * 2)  # --> 0, because False is 0
 # * - single multiplication
 print(8 * 20)
 
-# ** - power multiplication
-print(2 ** 5)  # 2 * 2 * 2 * 2 * 2 = 32
+# ** - power multiplication - two stars/asterisks characters
+print(2 ** 5)  # means 2 * 2 * 2 * 2 * 2 = 32
 
 # Basic Operators. Division
-# regular division - one forward slash in one line
+# regular division  = float division -  one forward slash in one line
 print(100 / 2)  # 50.0
 
 # integer division - two forward slashes in one line

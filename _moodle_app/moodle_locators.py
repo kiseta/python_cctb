@@ -28,7 +28,7 @@ full_name = f'{first_name} {last_name}'
 new_username = f'{first_name}{last_name}'.lower()
 new_password = fake.password()
 email = f'{new_username}@{fake.free_email_domain()}' #fake.email()
-print(email)
+#print(email)
 moodle_net_profile = f'https://moodle.net/{new_username}'
 city = fake.city()
 country = fake.current_country()
@@ -54,4 +54,4 @@ lst_val = [fake.url(), icq_num, new_username, id_aim, new_username, id_msn,
            idnumber, fake.company(), fake.catch_phrase(),
            fake.phone_number(),fake.bothify(text='1-(###)-###-####'), address1]
 
-print(lst_val)
+#print(lst_val)
