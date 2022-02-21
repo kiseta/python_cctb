@@ -14,7 +14,7 @@ s = Service(executable_path='../chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 
 
-# ------------------ AOS WEB ELEMENTS ------------------------------
+# ------------------ AOS LOCATORS ------------------------------
 app = 'Advantage Online Shopping'
 base_url = 'https://advantageonlineshopping.com/#/'
 new_account_url = 'https://advantageonlineshopping.com/#/register'
@@ -98,7 +98,7 @@ def log_in():
 
 
 def validate_user_login():
-    print(f'\n----------------~* VALIDATE NEW USER  *~----- ------------')
+    print(f'\n----------------~* VALIDATE NEW USER  *~------------------')
     if driver.find_element(By.LINK_TEXT, user_name).is_displayed():
         print(f'{user_name} Login Successful!{hr}')
         sleep(0.25)
