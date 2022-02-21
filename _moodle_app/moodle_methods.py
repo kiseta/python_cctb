@@ -267,9 +267,11 @@ def delete_user():
         # print('--- Delete Link:', driver.find_element(By.CSS_SELECTOR, f"a[href*='delete']").get_attribute("href"))
         # driver.find_element(By.CSS_SELECTOR, f"a[href*='delete={user_system_id}']").click()
         driver.find_element(By.XPATH, f'//a[contains(@href,"delete={user_system_id}")]').click()
+        #driver.find_element(By.XPATH, f"//td[contains(., '{locators.email}')]/../td/a/i[@title='Delete']").click()
         sleep(0.25)
         # delete user
         driver.find_element(By.XPATH, "//button[text()='Delete']").click()  # option 1
+
         # driver.find_element(By.XPATH, "//*[contains(text(), 'Delete')]").click() # option 2 * means any tag
         # driver.find_element(By.XPATH, '//i[@title="Delete"]').click() # option 3# only for i html tag
         print(f'--- User {locators.email}, System ID {user_system_id} is deleted  at:{datetime.datetime.now()} --- ')
@@ -296,9 +298,9 @@ def logger(action):
     sys.stdout = old_instance
     log_file.close()
 
-# # Tests execution is moved to moodle_tests.py and handled by the UnitTest
-# # Commented out for Unittest to run the test from the Moodle Tests
-# # uncomment the code to run moodle_methods.py standalone
+# Tests execution is moved to moodle_tests.py and handled by the UnitTest
+# Commented out for Unittest to run the test from the Moodle Tests
+# uncomment the code to run moodle_methods.py standalone
 
 # # -------------------- CREATE A NEW USER -----------------------
 # setUp()  # Open Web Browser

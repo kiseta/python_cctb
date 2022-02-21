@@ -74,15 +74,48 @@ finally:
     print('Program is done')
 
 # 4.
-# NameError: name 'boooks' is not defined
+# NameError: name 'pam' is not defined
 
 ages = {
-    'pam': 24,
+    'Pam': 99,
     'jim': 24,
     'michael': 43
 }
 
 print(f'Michael is {ages["michael"]} years old.')
+person = input(f'Please enter name: ')
+try:
+    print(f'{ages[person]}')
+except NameError as n:
+    print(n)
+
+
+# EXAMPLE 1 List IndexError
+try:
+    twilight_saga = ['Twilight', 'New Moon', 'Eclipse', 'Breaking Dawn']  # make a list with square brackets
+    print(twilight_saga)
+    print('--------- correct - twilight_saga[3] ------------')
+    print(twilight_saga[3]) # print 4TH item from the list using zero based index
+    print('--------- error - twilight_saga[4] ------------')
+    print(twilight_saga[4])  # print 4TH item from the list - generate error
+except IndexError as ie:
+    print(f'IndexError: {ie}, check your item index')
+finally:
+    print('---------------- Program is done----------------')
+
+
+# example TypeError (already highlighted in the code) or ValueError
+val1 = input('enter value 1: ')
+val2 = input('enter value 2: ')
+print(val1 / val2)
+
+try:
+    print(val1 / val2)
+except TypeError as te:
+    print(f'This operation is not allowed')
+
+
+
 
 def find_between_r( s, first, last ):
     try:
@@ -93,4 +126,6 @@ def find_between_r( s, first, last ):
         return ""
 
 print(find_between_r('http://52.39.5.126/user/view.php?id=533&course=1','=','&'))
+
+
 
