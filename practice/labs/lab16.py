@@ -1,8 +1,6 @@
 __author__ = 'tk'
-
 import datetime
 from time import sleep
-
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -19,8 +17,10 @@ from selenium.webdriver.common.by import By
 # 10. Close the browser and display a user-friendly message.
 
 # initialize chrome driver object
-s = Service(executable_path='../../chromedriver.exe')
-driver = webdriver.Chrome(service = s)
+# s = Service(executable_path='../../chromedriver.exe')
+# driver = webdriver.Chrome(service = s)
+
+driver = webdriver.Chrome('../../chromedriver.exe')
 
 
 # ------------------ AOS WEB ELEMENTS ------------------------------
@@ -74,12 +74,13 @@ def add_to_cart():
         print(f'{hr}Go to Shopping Cart')
         sleep(0.25)
         assert driver.find_element(By.XPATH, f'//td[contains(.,"{product}")]').is_displayed()
-        print(f'{hr}Success! {product} is found in Shopping Cart')
+        check = driver.find_element(By.XPATH, f'//td[contains(.,"{product}")]').is_displayed()
+        print(f'{hr}Success! {product} is found in Shopping Cart: {check}')
         sleep(0.25)
-        driver.find_element(By.LINK_TEXT, 'Delete').click()
+        #driver.find_element(By.LINK_TEXT, 'Delete').click()
+        driver.find_element(By.XPATH, f"//td[contains(., '{product}')]/../td/a[contains(text(),'Delete')]").click()
         print(f'{hr}Now deleting {product} from Shopping Cart')
         sleep(0.25)
-
         # Works but takes too long
         # try:
         #     assert driver.find_element(By.XPATH, f'//td[contains(.,"{product}")]').is_displayed()
