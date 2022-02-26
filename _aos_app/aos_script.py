@@ -1,4 +1,5 @@
 __author__ = 'tk'
+
 import datetime
 import sys
 from time import sleep
@@ -7,6 +8,7 @@ from faker import Faker
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 
 fake = Faker(locale=['en_CA', 'en_US'])
 
@@ -64,6 +66,7 @@ def setup():
     if driver.current_url == base_url and driver.title == home_page_title:
         print(f'Yey! {app} is launched! URL: {driver.current_url}')
         print('Page Title: ', {driver.title})
+        print({driver.title})
     else:
         print(driver.current_url)
         print(f'We are not on {app} Home Page. Check your code')
@@ -120,6 +123,7 @@ def log_out():
 
 
 def create_new_user():
+    global element
     print(f'\n-----------------~* CREATE NEW USER *~--------------------')
     if driver.current_url == base_url:
         driver.find_element(By.ID, 'menuUserLink').click()
@@ -133,16 +137,16 @@ def create_new_user():
             wait(5)
             print(f'CREATE ACCOUNT Page is displayed{hr}')
             # populate edit form fields
+            driver.find_element(By.NAME, 'countryListboxRegisterPage').click()
             for i in range(len(list_name)):
                 name, val = list_name[i], list_val[i]
                 driver.find_element(By.NAME, name).send_keys(val)
-                wait(5)
+                wait(0.25)
+
+            wait (20)
+            Select(driver.find_element(By.NAME, 'countryListboxRegisterPage')).select_by_visible_text('Canada')
+            wait(5)
             driver.find_element(By.NAME, 'i_agree').click()
-            # wait(30)
-            # driver.find_element(By.NAME, 'countryListboxRegisterPage').click()
-            wait(0.25)
-            #Select(driver.find_element(By.NAME, 'countryListboxRegisterPage')).select_by_visible_text('Canada')
-            sleep(0.25)
             driver.find_element(By.ID, 'register_btnundefined').click()
             sleep(0.25)
             if driver.find_element(By.LINK_TEXT, user_name).is_displayed():
