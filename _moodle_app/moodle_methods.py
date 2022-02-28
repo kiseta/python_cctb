@@ -63,6 +63,14 @@ def log_in(username, password):
             driver.find_element(By.ID, 'password').send_keys(password)
             sleep(0.25)
             driver.find_element(By.ID, 'loginbtn').click()
+            # locators XPATH practice --------------------------------------
+            # driver.find_element(By.XPATH, '//button[contains(.,"Log in")]').click()  # method 2, by XPATH using anything with the text Log in
+            # driver.find_element(By.XPATH, '//button[contains(@id, "loginbtn")]').click()  # method 3, by XPATH using specific id
+            # driver.find_element(By.XPATH, '//button[@id="loginbtn"]').click()  # method 4, by XPATH, without contains
+            # driver.find_element(By.XPATH, '//*[@id="loginbtn"]').click()  # method 5, by XPATH without button * means any element
+            # driver.find_element(By.CSS_SELECTOR, 'button[id="loginbtn"]').click() # method 1 CSS_SELECTOR
+            # driver.find_element(By.CSS_SELECTOR, 'button#loginbtn').click()  # method 2 CSS_SELECTOR
+            # -----------------------------------------------------------------------------------------------
             if driver.title == 'Dashboard' and driver.current_url == locators.moodle_dashboard_url:
                 assert driver.current_url == locators.moodle_dashboard_url
                 print(f'--- Navigate to Dashboard Page - Page Title: {driver.title} --- ')
@@ -169,9 +177,9 @@ def create_new_user():
     for tag in locators.list_of_interests:
         # driver.find_element(By.XPATH, '//div[3]/input').send_keys(tag)
         driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(tag + "\n")
-        sleep(0.25)
-        # driver.find_element(By.XPATH, '//div[3]/input').send_keys(Keys.ENTER) # import Keys
         # driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(Keys.ENTER)
+        sleep(0.25)
+
         sleep(0.25)
 
     # for i in range(0, 3):
