@@ -26,9 +26,11 @@ home_page_title = '\xa0Advantage Shopping'
 first_name = fake.first_name()
 last_name = fake.last_name()
 full_name = f'{first_name} {last_name}'
-user_name = f'{first_name}{last_name}'.lower()[:12]
+# user_name = f'{first_name}{last_name}'.lower()[:12]
+user_name = fake.user_name()
 password = 'Pass1'
 user_email = f'{user_name}@{fake.free_email_domain()}'
+email = fake.free_email()
 phone = fake.bothify(text='1-(###)-###-####')
 country = fake.current_country()
 city = fake.city()[:10]
@@ -37,22 +39,23 @@ province = fake.province_abbr()
 postal_code = fake.postalcode()
 hr = f'\n------------------------~*~--------------------------'
 
-list_name = ['usernameRegisterPage', 'emailRegisterPage', 'passwordRegisterPage', 'confirm_passwordRegisterPage',
+list_fld_name = ['usernameRegisterPage', 'emailRegisterPage', 'passwordRegisterPage', 'confirm_passwordRegisterPage',
              'first_nameRegisterPage', 'last_nameRegisterPage', 'phone_numberRegisterPage',
              'cityRegisterPage', 'addressRegisterPage', 'state_/_province_/_regionRegisterPage',
              'postal_codeRegisterPage']
 
-list_val = [user_name, user_email, password, password,
+list_fld_val = [user_name, user_email, password, password,
             first_name, last_name, phone,
             city, address, province, postal_code]
 
-print(list_val)
-print(country)
+list_fld_name_req = ['usernameRegisterPage', 'emailRegisterPage', 'passwordRegisterPage', 'confirm_passwordRegisterPage']
+
+list_fld_val_req = [user_name, email, password, password]
+
+print(list_fld_val)
+print(list_fld_val_req)
 # -------------------------------------------------
 
-
-def wait(sec):
-    driver.implicitly_wait(sec)
 
 
 def setup():
@@ -84,7 +87,7 @@ def teardown():  # function to end the session
 def log_in():
     print(f'\n------------------------~* LOGIN  *~------------------------')
     if driver.current_url == base_url:
-        wait(2)
+        sleep(2)
         driver.find_element(By.ID, 'menuUserLink').click()
         sleep(2)
         assert driver.find_element(By.LINK_TEXT, 'CREATE NEW ACCOUNT').is_displayed()
@@ -118,12 +121,12 @@ def log_out():
     if driver.current_url == base_url:
         print(f'Logout Successful! at {datetime.datetime.now()}{hr}')
     driver.refresh()
-    wait(3)
+    sleep(3)
     # breakpoint()
 
 
 def create_new_user():
-    global element
+    #global element
     print(f'\n-----------------~* CREATE NEW USER *~--------------------')
     if driver.current_url == base_url:
         driver.find_element(By.ID, 'menuUserLink').click()
@@ -131,21 +134,21 @@ def create_new_user():
         assert driver.find_element(By.LINK_TEXT, 'CREATE NEW ACCOUNT').is_displayed()
         print(f'Login form is displayed - continue to Create New Account{hr}')
         driver.find_element(By.LINK_TEXT, 'CREATE NEW ACCOUNT').click()
-        wait(5)
+        sleep(0.5)
         if driver.current_url == new_account_url:
             assert driver.find_element(By.XPATH, '//h3[contains(.,"CREATE ACCOUNT")]').is_displayed()
-            wait(5)
             print(f'CREATE ACCOUNT Page is displayed{hr}')
+            sleep(0.25)
             # populate edit form fields
-            driver.find_element(By.NAME, 'countryListboxRegisterPage').click()
-            for i in range(len(list_name)):
-                name, val = list_name[i], list_val[i]
+            for i in range(len(list_fld_name)):
+                name, val = list_fld_name[i], list_fld_val[i]
                 driver.find_element(By.NAME, name).send_keys(val)
-                wait(0.25)
+                sleep(0.25)
 
-            wait (20)
+            sleep(1)
+            #driver.find_element(By.NAME, 'countryListboxRegisterPage').click()
             Select(driver.find_element(By.NAME, 'countryListboxRegisterPage')).select_by_visible_text('Canada')
-            wait(5)
+            sleep(1)
             driver.find_element(By.NAME, 'i_agree').click()
             driver.find_element(By.ID, 'register_btnundefined').click()
             sleep(0.25)
@@ -163,19 +166,19 @@ def delete_account():
     assert driver.find_element(By.LINK_TEXT, user_name).is_displayed()
     sleep(0.25)
     driver.find_element(By.LINK_TEXT, user_name).click()
-    wait(5)
+    sleep(0.5)
     driver.find_element(By.XPATH, '//a/div/label[contains(.,"My account")]').click()
-    wait(20)
+    sleep(0.5)
     if driver.find_element(By.XPATH, f'//label[contains(.,"{full_name}")]').is_displayed():
         print(f'Account details page for user: \'{full_name}\' is displayed{hr}')
-        wait(5)
+        sleep(1)
         driver.find_element(By.CLASS_NAME, 'deleteBtnText').click()
-        wait(5)
+        sleep(1)
         delete_popup = driver.find_element(By.CLASS_NAME, 'deleteAccountPopupContent').is_displayed()
         print(f'Delete popup is displayed: {delete_popup}')
         if delete_popup:
             driver.find_element(By.XPATH, "//div[contains(text(), 'yes')]").click()
-            driver.implicitly_wait(3)
+            sleep(0.25)
             assert driver.find_element(By.XPATH, "//*[contains(., 'deleted successfully')]").is_displayed()
             conf_screen = driver.find_element(By.XPATH, "//*[contains(., 'deleted successfully')]").is_displayed()
             print(f'Delete Confirmation screen is displayed: {conf_screen}')
@@ -188,21 +191,21 @@ def delete_account():
         else:
             print(f'Delete Popup is not displayed')
             driver.find_element(By.CLASS_NAME, 'deleteBtnText').click()
-            wait(30)
+            sleep(30)
 
 
 def validate_user_deleted():
     print(f'\n------------~* CONFIRM USER DOES NOT EXIST  *~-------------')
-    wait(2)
+    sleep(2)
     error_label = driver.find_element(By.XPATH, '//label[contains(.,"Incorrect user name or password.")]').text
     if driver.find_element(By.XPATH, '//label[contains(.,"Incorrect user name or password.")]').is_displayed():
         print(f'Username/Password {user_name}/{password} is not found. Error: {error_label}')
-        wait(0.25)
+        sleep(0.25)
         # close login popup
         driver.find_element(By.XPATH, '//div[contains(@class,"closeBtn loginPopUpCloseBtn")]').click()
     else:
         print(error_label)
-    wait(2)
+    sleep(2)
 
 
 def logger(action):

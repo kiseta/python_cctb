@@ -1,9 +1,13 @@
 __author__ = 'tk'
 import datetime
 from time import sleep
+
+from faker import Faker
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+
+fake = Faker(locale='en_US')
 
 # 1. Using Selenium WebDriver, open the web browser.
 # 2. Maximize the browser window.
@@ -17,10 +21,10 @@ from selenium.webdriver.common.by import By
 # 10. Close the browser and display a user-friendly message.
 
 # initialize chrome driver object
-# s = Service(executable_path='../../chromedriver.exe')
-# driver = webdriver.Chrome(service = s)
+s = Service(executable_path='../../chromedriver.exe')
+driver = webdriver.Chrome(service = s)
 
-driver = webdriver.Chrome('../../chromedriver.exe')
+#driver = webdriver.Chrome('../../chromedriver.exe')
 
 
 # ------------------ AOS WEB ELEMENTS ------------------------------
@@ -29,6 +33,8 @@ base_url = 'https://www.demoblaze.com/index.html'
 home_page_title = "STORE"
 product = 'Nexus 6'
 product_url = 'https://www.demoblaze.com/prod.html?idp_=3'
+username = fake.user_name()
+password = fake.password()
 hr = '--------~*~----------------~*~----------\n'
 # -------------------------------------------------
 
@@ -93,6 +99,44 @@ def add_to_cart():
         sleep(0.25)
 
 
+def sign_up():
+    driver.find_element(By.LINK_TEXT, 'Sign up').click()
+    sleep(0.25)
+    assert driver.find_element(By.ID, 'signInModalLabel').is_displayed()
+    sleep(0.25)
+    driver.find_element(By.ID, 'sign-username').send_keys(username)
+    sleep(0.25)
+    driver.find_element(By.ID, 'sign-password').send_keys(password)
+    sleep(0.25)
+    driver.find_element(By.XPATH, '//button[contains(text(),"Sign up")]').click()
+    sleep(0.25)
+    driver.switch_to.alert.accept()
+
+def log_in():
+    driver.find_element(By.LINK_TEXT, 'Log in').click()
+    sleep(0.25)
+    assert driver.find_element(By.ID, 'logInModalLabel').is_displayed()
+    sleep(0.25)
+    driver.find_element(By.ID, 'loginusername').send_keys(username)
+    sleep(0.25)
+    driver.find_element(By.ID, 'loginpassword').send_keys(password)
+    sleep(0.25)
+    driver.find_element(By.XPATH, '//button[contains(text(),"Log in")]').click()
+    sleep(0.25)
+    # nameofuser
+    print(driver.find_element(By.ID, 'nameofuser').get_attribute("text"))
+    assert driver.find_element(By.XPATH, f'//a[contains(text(), "Welcome {username}")]').is_displayed()
+    logincheck = driver.find_element(By.XPATH, f'//a[contains(text(),{username})]').is_displayed()
+    print(f'Login is successful {username} username is displayed: {logincheck}')
+
+
+def log_out():
+    driver.find_element(By.LINK_TEXT, 'Log out').click()
+    sleep(0.25)
+
 setUp()
-add_to_cart()
+sign_up()
+log_in()
+log_out()
+# add_to_cart()
 tearDown()

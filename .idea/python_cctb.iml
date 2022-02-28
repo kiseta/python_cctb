@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/_moodle_app" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/venv" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/practice" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parabank" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.9" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
