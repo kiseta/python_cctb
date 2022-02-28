@@ -1,5 +1,3 @@
-__author__ = 'tk'
-
 import datetime
 import sys
 from time import sleep
@@ -78,7 +76,7 @@ def teardown():  # function to end the session
 
 
 def log_in():
-    print(f'\n------------------------~* LOGIN  *~------------------------')
+    print(f'\n------------------------~* LOGIN *~------------------------')
     assert driver.find_element(By.XPATH, '//form[contains(@name,"login")]').is_displayed()
     driver.find_element(By.NAME, 'username').send_keys(username)
     sleep(0.25)
@@ -88,21 +86,21 @@ def log_in():
     sleep(0.25)
 
 
-def validate_user_login():
-    print(f'\n----------------~* VALIDATE NEW USER CAN LOGIN  *~------------------')
-    if driver.find_element(By.XPATH, f'//p[contains(.,"{fullname}")]').is_displayed():
+def validate_login():
+    print(f'\n----------------~* VALIDATE LOGIN *~------------------')
+    if driver.find_element(By.XPATH, f'//p[contains(.,"Welcome {fullname}")]').is_displayed():
         print(f'{username} Login Successful!{hr}')
         sleep(0.25)
     else:
-        print(f'We\'re could not login. Try again.')
+        print(f'We\'re could not login. Try again.{hr}')
 
 
 def log_out():
-    print(f'\n------------------------~* LOGOUT  *~------------------------')
+    print(f'\n------------------------~* LOGOUT *~------------------------')
     driver.find_element(By.LINK_TEXT, 'Log Out').click()
     sleep(0.25)
     if driver.find_element(By.XPATH, '//h2[contains(.,"Customer Login")]').is_displayed():
-        print(f'{username} Logout successful!')
+        print(f'{username} Logout successful!{hr}')
 
     # breakpoint()
 
@@ -117,7 +115,7 @@ def register():
         print(f'Current URL: {driver.current_url}\nCurrent Page Title: {driver.title}')
         #breakpoint()
         if register_page_url in driver.current_url and driver.title == register_page_title:
-            print(f'Fill out registration form{hr}')
+            print(f'Fill out registration form {hr}')
             sleep(0.25)
             # populate edit form fields
             for i in range(len(list_fld_id)):
@@ -131,7 +129,7 @@ def register():
             #breakpoint()
             if chk1 and chk2:
                 print(f'Registration successful: Confirmation Full Name: {chk1}, Confirmation username: {chk2}')
-                print(f'User registered: {username}/{password}')
+                print(f'User registered: {username}/{password}{hr}')
                 logger('created')
                 sleep(0.25)
             else:
@@ -155,6 +153,6 @@ setup()
 register()
 log_out()
 log_in()
-validate_user_login()
+validate_login()
 log_out()
 teardown()
