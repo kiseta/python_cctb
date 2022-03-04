@@ -201,7 +201,7 @@ def check_new_user_can_login():
 def logger(action):
     # create variable to store the file content
     old_instance = sys.stdout
-    log_file = open('message.log', 'a')  # open log file and append a record
+    log_file = open('moodle.log', 'a')  # open log file and append a record
     sys.stdout = log_file
     print(f'{locators.email}\t'
           f'{locators.new_username}\t'

@@ -177,7 +177,7 @@ def create_new_user():
     for tag in locators.list_of_interests:
         # driver.find_element(By.XPATH, '//div[3]/input').send_keys(tag)
         driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(tag + "\n")
-        # driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(Keys.ENTER)
+        #driver.find_element(By.XPATH, '//input[contains(@id, "form_autocomplete_input")]').send_keys(Keys.ENTER)
         sleep(0.25)
 
         sleep(0.25)
@@ -201,6 +201,7 @@ def create_new_user():
         # driver.find_element(By.XPATH, f'//*[@id="{fid}"]').send_keys(val)
         sleep(0.25)
     # breakpoint()
+
     driver.find_element(By.ID, 'id_submitbutton').click()
     sleep(0.25)
     print(f'--- New user "{locators.new_username}" is added.')
@@ -271,10 +272,10 @@ def delete_user():
     if driver.find_element(By.XPATH, f'//td[contains(.,"{locators.email}")]').is_displayed and \
             driver.find_element(By.XPATH, f'//a[contains(@href,"delete={user_system_id}")]').is_displayed:
         # driver.find_element(By.CSS_SELECTOR, f"a[href*='delete={user_system_id}']").is_displayed:
-
         # print('--- Delete Link:', driver.find_element(By.CSS_SELECTOR, f"a[href*='delete']").get_attribute("href"))
         # driver.find_element(By.CSS_SELECTOR, f"a[href*='delete={user_system_id}']").click()
-        driver.find_element(By.XPATH, f'//a[contains(@href,"delete={user_system_id}")]').click()
+        #driver.find_element(By.XPATH, f'//a[contains(@href,"delete={user_system_id}")]').click()
+        driver.find_element(By.XPATH, f"//td[contains(., '{locators.email}')]/../td/a/i[@title='Delete']").click()
         sleep(0.25)
         # delete user
         driver.find_element(By.XPATH, "//button[text()='Delete']").click()  # option 1
@@ -293,7 +294,7 @@ def delete_user():
 def logger(action):
     # create variable to store the file content
     old_instance = sys.stdout
-    log_file = open('message.log', 'a')  # open log file and append a record
+    log_file = open('../logs/moodle.log', 'a')  # open log file and append a record
     sys.stdout = log_file
     print(f'{user_system_id}\t'
           f'{locators.email}\t'

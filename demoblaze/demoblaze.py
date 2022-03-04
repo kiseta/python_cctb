@@ -1,4 +1,5 @@
 import datetime
+import random
 from time import sleep
 
 from faker import Faker
@@ -20,12 +21,17 @@ app = 'DEMOBLAZE'
 base_url = 'https://www.demoblaze.com/index.html'
 home_page_title = "STORE"
 product = 'Nexus 6'
-product_list = ['Nexus 6','Sony xperia z5','Nokia lumia 1520']
-product_url = 'https://www.demoblaze.com/prod.html?idp_=3'
+#product_list = ['Nexus 6','Sony xperia z5','Nokia lumia 1520',]
+all_products = ['Samsung galaxy s6', 'Nokia lumia 1520', 'Nexus 6', 'Samsung galaxy s7', 'Iphone 6 32gb',
+          'Sony xperia z5', 'HTC One M9', 'Sony vaio i5', 'Sony vaio i7']
 username = fake.user_name()
 password = fake.password()
 hr = '--------~*~----------------~*~----------\n'
 # -------------------------------------------------
+n = 3
+product_list  = [random.choice(all_products) for i in range(n)]
+print(product_list)
+#breakpoint()
 
 
 def setUp():
@@ -132,8 +138,8 @@ def log_out():
     sleep(0.25)
 
 setUp()
-sign_up()
-log_in()
+#sign_up()
+#log_in()
 add_to_cart()
-log_out()
+#log_out()
 tearDown()

@@ -278,7 +278,7 @@ def delete_user():
 def logger(action):
     # create variable to store the file content
     old_instance = sys.stdout
-    log_file = open('../message.log', 'a') # open log file and append a record
+    log_file = open('../../logs/moodle.log', 'a') # open log file and append a record
     sys.stdout = log_file
     print(f'{user_system_id}\t'
           f'{locators.email}\t'

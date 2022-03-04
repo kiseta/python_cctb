@@ -211,7 +211,7 @@ def validate_user_deleted():
 def logger(action):
     # create variable to store the file content
     old_instance = sys.stdout
-    log_file = open('message.log', 'a')  # open log file and append a record
+    log_file = open('../logs/aos.log', 'a')  # open log file and append a record
     sys.stdout = log_file
     print(f'{user_email}\t'
           f'{user_name}\t'

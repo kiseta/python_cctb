@@ -171,7 +171,7 @@ def create_new_user():
     # driver.find_element(By.XPATH, '//input[@value="4"]').click()  # method 1
     driver.find_element(By.XPATH, '//label[contains(.,"Create an alias/shortcut to the file")]').click()  # method 2
     sleep(0.25)
-    driver.find_element(By.XPATH, '//button[contains(.,"Select this file")]').click()
+    driver.find_element(By.XPATH, '//button[contains(text(),"Select this file")]').click()
     sleep(0.25)
 
     driver.find_element(By.ID, 'id_imagealt').send_keys(locators.pic_desc)

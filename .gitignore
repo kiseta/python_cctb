@@ -1,4 +1,4 @@
-/_aos_app/message.log
-/_moodle_app/message.log
+/logs/aos.log
+/logs/moodle.log
 /requirements.txt
-/parabank/message.log
+/logs/parabank.log
