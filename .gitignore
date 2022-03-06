@@ -2,3 +2,4 @@
 /logs/moodle.log
 /requirements.txt
 /logs/parabank.log
+__pycache__/
