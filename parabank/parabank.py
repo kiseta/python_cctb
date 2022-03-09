@@ -4,6 +4,7 @@ from time import sleep
 
 from faker import Faker
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
@@ -28,7 +29,8 @@ state = fake.province_abbr()
 postalcode = fake.postalcode()
 phone = fake.pyint(111111111, 999999999)
 ssn = fake.ssn()
-username = f'{firstname[:6]}{fake.pyint(111, 999)}'.lower()
+# username = f'{firstname[:6]}{fake.pyint(111, 999)}'.lower()
+username = f'{firstname}{lastname}{fake.pyint(111,999)}'.lower()
 password = fake.password()
 
 list_id = ['customer.firstName', 'customer.lastName', 'customer.address.street', 'customer.address.city',
@@ -77,13 +79,8 @@ def log_in():
     driver.find_element(By.XPATH, '//input[contains(@value,"Log In")]').click()
     sleep(0.5)
     print('----------------------~* VALIDATE *~------------------------')
+    #check_username()
     check_fullname()
-    #
-    # if driver.find_element(By.XPATH, f'//p[contains(.,"Welcome {fullname}")]').is_displayed():
-    #     print(f'{username} Login Successful!{hr}')
-    #     sleep(0.25)
-    # else:
-    #     print(f'We\'re could not login. Try again.{hr}')
 
 
 def log_out():
@@ -115,20 +112,33 @@ def register():
             driver.implicitly_wait(30)
             print('-----------------~* VALIDATE *~--------------------')
             logger('created')
-            check_fullname()
             check_username()
+            check_fullname()
+            #breakpoint()
 
 
 def check_fullname():
-    fullname_check = driver.find_element(By.XPATH, f'//p[contains(.,"Welcome")]').text
-    print(f'Full name welcome validation : {"PASS ✔" if fullname in fullname_check else "FAIL ✖"}')
-    print(f'Expected: Welcome {fullname}, Actual: {fullname_check}')
+    print('---------------- full name h1 heading ----------------------')
+    driver.implicitly_wait(3)
+    try:
+        fullname_check = driver.find_element(By.XPATH, f'//p[contains(.,"Welcome")]').text
+        print(f'Full name welcome validation : {"PASS ✔" if fullname in fullname_check else "FAIL ✖"}')
+        print(f'Expected: Welcome {fullname}, Actual: {fullname_check}')
+    except NoSuchElementException as e:
+        print(f'Error has occurred: {e}')
+        teardown()
 
 
 def check_username():
-    username_check = driver.find_element(By.XPATH, f'//h1[contains(text(),"Welcome")]').text
-    print(f'User name welcome validation - {"PASS ✔" if username in username_check else "FAIL ✖"}')
-    print(f'Expected: Welcome {username}, Actual: {username_check}')
+    print('---------------- username paragraph ----------------------')
+    driver.implicitly_wait(3)
+    try:
+        username_check = driver.find_element(By.XPATH, f'//H1[@class="title"]').text
+        print(f'User name welcome validation - {"PASS ✔" if username in username_check else "FAIL ✖"}')
+        print(f'Expected: Welcome {username}, Actual: {username_check}')
+    except NoSuchElementException as e:
+        print(f'Error has occurred: {e}')
+        teardown()
 
 
 def logger(action):
