@@ -1,13 +1,13 @@
-import datetime
-import random
 import sys
+import random
+import datetime
 from time import sleep
-
-import aos_locators as locators
 from selenium import webdriver
+import aos_locators as locators
+from selenium.webdriver.common.by import By
 # from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
+
 
 s = Service(executable_path='../chromedriver.exe')
 driver = webdriver.Chrome(service=s)
