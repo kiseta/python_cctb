@@ -1,5 +1,3 @@
-__author__ = 'tk'
-
 import datetime
 import sys
 from time import sleep
