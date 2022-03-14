@@ -4,6 +4,7 @@ import datetime
 from time import sleep
 from selenium import webdriver
 import aos_locators as locators
+import aos_db as db
 from selenium.webdriver.common.by import By
 # from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.service import Service
@@ -170,9 +171,8 @@ def validate_user_deleted():
 
 def checkout_shopping_cart():
     sleep(2)
-    print(f'\n------------------------~* ADD ITEM TO CART  *~------------------------')
-    product_id = random.randint(1, 34)
-    driver.get(f'{locators.base_url}product/{product_id}')
+    print(f'\n------------------------~* ADD ITEM TO CART  *~---------------------')
+    driver.get(f'{locators.base_url}product/{locators.product_id}')
     locators.product_name = driver.find_element(By.CLASS_NAME, 'select').text
     print(f'Random product selected: {locators.product_name}')
     driver.find_element(By.XPATH, '//button[text()="ADD TO CART"]').click()
@@ -187,6 +187,7 @@ def checkout_shopping_cart():
     print(f'Product: "{locators.product_name}" is in the cart')
     sleep(2)
     driver.find_element(By.ID, 'checkOutButton').click()
+
     # ----------------- check if login form is displayed
     if driver.current_url == 'https://advantageonlineshopping.com/#/login':
         print(f'Login form is displayed - continue to Login')
@@ -230,7 +231,7 @@ def checkout_shopping_cart():
     print(f'\n------------------------~* ORDER CONFIRMATION  *~------------------------')
     thank_you_msg = 'Thank you for buying with Advantage'
     assert driver.find_element(By.XPATH, f'//span[contains(.,"{thank_you_msg}")]').is_displayed()
-    print(f'"{thank_you_msg}" message is displayed')
+    print(f'"{thank_you_msg}" confirmation message is displayed')
     locators.order_number = driver.find_element(By.ID, 'orderNumberLabel').text
     locators.tracking_number = driver.find_element(By.ID, 'trackingNumberLabel').text
     print(f'Order Number: {locators.order_number}')
@@ -251,7 +252,10 @@ def validate_order():
     assert pname.upper() in locators.product_name
     print(f'Product name: {pname} is displayed')
     print(f'\n------------------------~* DELETE ORDER *~------------------------')
-    driver.find_element(By.XPATH, f"//*[contains(.,'{pname}')]/../td/span/a[text()='REMOVE']").click()
+    #driver.find_element(By.XPATH, f"//*[contains(.,'{pname}')]/../td/span/a[text()='REMOVE']").click()
+    driver.find_element(By.XPATH, f"//*[contains(.,'{locators.order_number}')]"
+                                  f"/../*[contains(.,'{pname}')]"
+                                  f"/../td/span/a[text()='REMOVE']").click()
     sleep(1)
     driver.find_element(By.ID, 'confBtn_1').click()
     sleep(1)

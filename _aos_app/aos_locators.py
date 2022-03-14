@@ -1,5 +1,6 @@
 from faker import Faker
 fake = Faker(locale=['en_CA', 'en_US'])
+import random
 
 # ------------------ AOS WEB ELEMENTS ------------------------------
 app = 'Advantage Online Shopping'
@@ -26,6 +27,13 @@ product_name = ''
 order_number = ''
 tracking_number = ''
 categories = ['SPEAKERS','TABLETS','LAPTOPS','MICE','HEADPHONES']
+
+# instock_inventory = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+#                      14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
+#                      24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
+# instock_inventory = [i for i in range(1, 35) if i != 13]
+# product_id = random.choice(instock_inventory)
+product_id = random.choice([x for x in range(1, 35) if x != 13])
 
 
 hr = f'\n------------------------~*~--------------------------'
