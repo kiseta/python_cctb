@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 
 fake = Faker(locale='en_US')
 
-s = Service(executable_path='chromedriver.exe')
+s = Service(executable_path='../chromedriver.exe')
 driver = webdriver.Chrome(service = s)
 
 
@@ -77,7 +77,7 @@ def checkout_cart():
             total += item_price
             print(f'{hr}Go to: {product_name} page, Product ID: {i}')
             driver.find_element(By.LINK_TEXT, 'Add to cart').click()
-            sleep(0.5)
+            sleep(0.25)
             driver.switch_to.alert.accept()
             print(f'{product_name} is added to Shopping Cart, item price: {item_price}')
             sleep(0.25)
@@ -106,18 +106,13 @@ def checkout_cart():
 
         #driver.find_element(By.LINK_TEXT, 'Delete').click()
         # delete second item from the cart
-        deleted_item_price = driver.find_element(By.XPATH, f'//tr[contains(.,"{product_list[1]}")]/td[3]').text
         driver.find_element(By.XPATH, f"//td[contains(., '{product_list[1]}')]/../td/a[contains(text(),'Delete')]").click()
         print(f'{hr}Now deleting {product_list[1]} from Shopping Cart')
         sleep(0.25)
         print(f'{hr}{product_list[1]} is deleted!')
-
         sleep(2)
-        total = total - int(deleted_item_price)
         new_cart_total = int(driver.find_element(By.ID, 'totalp').text)
-        assert new_cart_total == total
-        print(f'Deleted Item Price: {deleted_item_price}, Cart total updated: {total}')
-        print(f'New Cart total confirmed: {new_cart_total}\nContinue to Place Order')
+        print(f'{hr}New Cart total: {new_cart_total}\nContinue to Place Order')
 
         sleep(0.5)
 

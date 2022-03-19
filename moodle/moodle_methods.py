@@ -1,6 +1,7 @@
 import datetime
 import sys
 from time import sleep
+
 import moodle_locators as locators
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service

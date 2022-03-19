@@ -1,6 +1,7 @@
 import datetime
 import sys
 from time import sleep
+
 from faker import Faker
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
