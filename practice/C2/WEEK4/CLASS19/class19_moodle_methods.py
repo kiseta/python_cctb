@@ -213,21 +213,15 @@ def logger(action):
 
 
 # ------ CREATE NEW USER -------------
-setUp()
-log_in(locators.admin_username, locators.admin_password) # LOGIN AS ADMIN
-create_new_user()
-search_user()
-log_out()
-#-------------------------------------
-# -------- LOGIN AS NEW USER -----------------
-log_in(locators.new_username, locators.new_password)
-check_new_user_can_login()
-logger('created')
-log_out()
-# --------------------------------------------
-# ---------- DELETE NEW USER -----------------
-log_in(locators.admin_username, locators.admin_password)
-# delete new user function call goes here
-log_out()
-# --------------------------------------------
-tearDown()
+# setUp()
+# log_in(locators.admin_username, locators.admin_password) # LOGIN AS ADMIN
+# create_new_user()
+# search_user()
+# log_out()
+# log_in(locators.new_username, locators.new_password)
+# check_new_user_can_login()
+# log_out()
+# log_in(locators.admin_username, locators.admin_password)
+# delete_user()
+# log_out()
+# tearDown()

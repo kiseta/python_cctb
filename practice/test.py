@@ -1,36 +1,22 @@
-from faker import Faker
+from selenium import webdriver
+from time import sleep
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+# import selenium.webdriver.support.expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as EC
 
-fake = Faker(locale='en_CA')
+def findXpath(xpath,driver):
+    actionDone = False
+    count = 0
+    while not actionDone:
+        if count == 3:
+            raise Exception("Cannot found element %s after retrying 3 times.\n"%xpath)
+            break
+        try:
+            element = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, xpath)))
+            actionDone = True
+        except:
+            count += 1
+    sleep(0.5)
+    return element
 
-s = 'http://52.39.5.126/user/view.php?id=8769&course=1'
-start = '='
-end = '&'
-print(s.find(start))
-print(s.rfind(end))
-print(s[s.find(start) + len(start) : s.rfind('&')])
-
-def find_between_r(val, first):
-    try:
-        start = val.find(first) + len(first)
-        end = len(val)
-        return val[start:end]
-    except ValueError:
-        return ""
-
-print(find_between_r('http://52.39.5.126/user/view.php?id=5363','='))
-
-# find() will return the index of the first match. But
-# rfind() will give you the last occurence of the pattern
-h = 'http://52.39.5.126/user/view.php?id=543543'
-print(h[h.find('=') + 1 : len(h)])
-
-dh = 'http://52.39.5.126/admin/user.php?sort=name&dir=ASC&perpage=30&page=0&delete=1356&sesskey=EPuIOUEm0h'
-print(dh[dh.find('delete=') + len('delete=') : dh.rfind('&')])
-start = dh.find('delete=') + len('delete=')
-end = dh.rfind('&')
-print(dh[start : end])
-
-email = fake.email()
-print(email)
-address = fake.address()#.replace('\n', " ")
-print(address)

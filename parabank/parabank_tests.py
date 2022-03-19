@@ -1,9 +1,16 @@
 import unittest
-
 import parabank as pb
 
 
 class ParabankPositiveTestCases(unittest.TestCase):
+
+    @staticmethod
+    def test_login():
+        pb.setup()
+        pb.log_in()
+        pb.log_out()
+        pb.teardown()
+
 
     @staticmethod
     def test_register_account():
@@ -13,3 +20,6 @@ class ParabankPositiveTestCases(unittest.TestCase):
         pb.log_in()
         pb.log_out()
         pb.teardown()
+
+
+
