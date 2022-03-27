@@ -13,7 +13,7 @@ home_page_title = '\xa0Advantage Shopping'
 first_name = fake.first_name()
 last_name = fake.last_name()
 full_name = f'{first_name} {last_name}'
-user_name = f'{first_name}{last_name}{fake.pyint(11, 99)}'.lower()[:12]
+user_name = f'{first_name}{last_name}'.lower()[:10] + str(fake.pyint(11, 99))
 password = 'Pass1'
 user_email = f'{user_name}@{fake.free_email_domain()}'
 phone = fake.bothify(text='1-(###)-###-####')
@@ -23,7 +23,8 @@ address = fake.street_address()
 province = fake.province_abbr()
 postal_code = fake.postalcode()
 product_name = ''
-#pname = " ".join(w.capitalize() for w in product_name.split())
+credit_card_num = fake.credit_card_number(card_type=None)
+security_code = fake.pyint(1111, 9999)
 order_number = ''
 tracking_number = ''
 categories = ['SPEAKERS','TABLETS','LAPTOPS','MICE','HEADPHONES']
@@ -41,6 +42,7 @@ list_val = [user_name, user_email, password, password,
             city, address, province, postal_code]
 
 print(list_val)
+print(credit_card_num, security_code)
 
 
 # -------------------------------------------------

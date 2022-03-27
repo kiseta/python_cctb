@@ -72,7 +72,8 @@ def validate_user_login():
 
 def log_out():
     print(f'\n------------------------~* LOGOUT  *~------------------------')
-    driver.find_element(By.LINK_TEXT, locators.user_name).click()
+    sleep(2)
+    driver.find_element(By.ID, 'menuUserLink').click()
     sleep(0.25)
     driver.find_element(By.XPATH, '//a/div/label[contains(.,"Sign out")]').click()
     sleep(0.25)
@@ -210,22 +211,47 @@ def checkout_shopping_cart():
     sleep(2)
     assert driver.find_element(By.XPATH, f'//label[@class[contains(.,"selected")] and(text()="2. PAYMENT METHOD")]').is_displayed()
     print(f'ORDER PAYMENT > 2. PAYMENT METHOD page is displayed')
-    # safe pay details
-    driver.find_element(By.NAME, 'safepay').click()
-    sleep(0.25)
-    driver.find_element(By.NAME, 'safepay_username').send_keys('spusername')
-    sleep(0.25)
-    driver.find_element(By.NAME, 'safepay_password').send_keys('Pass1')
-    sleep(0.25)
-    spcheck = driver.find_element(By.NAME, 'save_safepay').is_selected()
-    print(f'Safepay save checkbox selected: {spcheck}')
-    if spcheck:
-        driver.find_element(By.NAME, 'save_safepay').click()
+
+    rndpay = 2  # random.randint(1, 2)
+
+    if rndpay == 1:
+        # ------------------------- MASTER CREDIT PAY ---------------------------------------
+        driver.find_element(By.NAME, 'masterCredit').click()
+        sleep(1)
+        driver.find_element(By.ID, 'creditCard').send_keys(locators.credit_card_num)
+        sleep(0.5)
+        driver.find_element(By.NAME, 'cvv_number').send_keys(locators.security_code)
+        sleep(0.5)
+        driver.find_element(By.NAME, 'cardholder_name').send_keys(locators.full_name)
+        sleep(0.5)
+        save_master_credit = driver.find_element(By.NAME, 'save_master_credit').is_selected()
+        print(f'MasterCredit save checkbox selected: {save_master_credit}')
+        if save_master_credit:
+            driver.find_element(By.NAME, 'save_master_credit').click()
+            save_master_credit = driver.find_element(By.NAME, 'save_master_credit').is_selected()
+            print(f'MasterCredit save checkbox selected: {save_master_credit}')
+
+        driver.find_element(By.ID, 'pay_now_btn_ManualPayment').click()
+        breakpoint()
+        # ------------------------- END MASTER CREDIT ---------------------------------------
+    if rndpay == 2:
+        # ------------------------- SAFEPAY PAYMENT ---------------------------------------
+        # safe pay details
+        driver.find_element(By.NAME, 'safepay').click()
+        sleep(0.25)
+        driver.find_element(By.NAME, 'safepay_username').send_keys('spusername')
+        sleep(0.25)
+        driver.find_element(By.NAME, 'safepay_password').send_keys('Pass1')
+        sleep(0.25)
         spcheck = driver.find_element(By.NAME, 'save_safepay').is_selected()
         print(f'Safepay save checkbox selected: {spcheck}')
+        if spcheck:
+            driver.find_element(By.NAME, 'save_safepay').click()
+            spcheck = driver.find_element(By.NAME, 'save_safepay').is_selected()
+            print(f'Safepay save checkbox selected: {spcheck}')
 
-    driver.find_element(By.ID, 'pay_now_btn_SAFEPAY').click()
-
+        driver.find_element(By.ID, 'pay_now_btn_SAFEPAY').click()
+        # ------------------------- END SAFEPAY PAY ---------------------------------------
     sleep(2)
     print(f'\n------------------------~* ORDER CONFIRMATION  *~------------------------')
     thank_you_msg = 'Thank you for buying with Advantage'
@@ -251,8 +277,6 @@ def validate_order():
     assert pname.upper() in locators.product_name
     print(f'Product name: {pname} is displayed')
     print(f'\n------------------------~* DELETE ORDER *~------------------------')
-    #driver.find_element(By.XPATH, f"//*[contains(.,'{pname}')]/../td/span/a[text()='REMOVE']").click()
-    #driver.find_element(By.XPATH, f"//*[contains(.,'{locators.order_number}')]/../*[contains(.,'{pname}')]/../td/span/a[text()='REMOVE']").click()
     driver.find_element(By.XPATH, f"//*[contains(.,'{locators.order_number}')]/../td/span/a[text()='REMOVE']").click()
     sleep(1)
     driver.find_element(By.ID, 'confBtn_1').click()
@@ -278,8 +302,8 @@ def logger(action):
 
 setup()
 create_new_user()
-# checkout_shopping_cart()
-# log_out()
+checkout_shopping_cart()
+#log_out()
 # log_in()
 # validate_user_login()
 # validate_order()
