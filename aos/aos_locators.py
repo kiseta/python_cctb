@@ -1,4 +1,5 @@
 from faker import Faker
+from datetime import datetime
 fake = Faker(locale=['en_CA', 'en_US'])
 import random
 
@@ -29,6 +30,7 @@ order_number = ''
 tracking_number = ''
 categories = ['SPEAKERS','TABLETS','LAPTOPS','MICE','HEADPHONES']
 product_id = random.choice([i for i in range(1, 35) if i != 13])
+res_dir_name = datetime.now().strftime("res_%Y%m%d_%H%M%S")
 
 hr = f'\n------------------------~*~--------------------------'
 

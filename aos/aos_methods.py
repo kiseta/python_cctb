@@ -1,5 +1,5 @@
+import os
 import sys
-import random
 import datetime
 from time import sleep
 from selenium import webdriver
@@ -17,6 +17,7 @@ def setup():
     print(f'{locators.app} test started at: {datetime.datetime.now()}')
     print(f'Launch {locators.app}\n')
     driver.set_page_load_timeout(20)
+    os.mkdir(locators.res_dir_name)
     driver.maximize_window()  # open web browser and maximize the window
     driver.implicitly_wait(10)  # wait for the browser response in general
     driver.get(locators.base_url)  # navigate to app website
@@ -68,7 +69,7 @@ def validate_user_login():
         sleep(0.25)
     else:
         print(f'Expected Username: "{locators.user_name}" is not displayed!')
-
+    ssh('validate_user_login')
 
 def log_out():
     print(f'\n------------------------~* LOGOUT  *~------------------------')
@@ -107,6 +108,7 @@ def create_new_user():
             sleep(0.25)
             driver.find_element(By.NAME, 'i_agree').click()
             sleep(0.25)
+            ssh('create_new_user_form_populated')
             driver.find_element(By.ID, 'register_btnundefined').click()
             sleep(0.25)
             if driver.find_element(By.LINK_TEXT, locators.user_name).is_displayed():
@@ -162,6 +164,7 @@ def validate_user_deleted():
         print(f'Username/Password {locators.user_name}/{locators.password} is not found. Error: {error_label}')
         sleep(0.25)
         # close login popup
+        ssh('validate_user_deleted')
         driver.find_element(By.XPATH, '//div[contains(@class,"closeBtn loginPopUpCloseBtn")]').click()
     else:
         print(error_label)
@@ -174,6 +177,7 @@ def checkout_shopping_cart():
     driver.get(f'{locators.base_url}product/{locators.product_id}')
     locators.product_name = driver.find_element(By.CLASS_NAME, 'select').text
     print(f'Random product selected: {locators.product_name}, Product ID: {locators.product_id}')
+    ssh('add_item_to_cart')
     driver.find_element(By.XPATH, '//button[text()="ADD TO CART"]').click()
     sleep(2)
     # navigate to cart
@@ -212,10 +216,30 @@ def checkout_shopping_cart():
     assert driver.find_element(By.XPATH, f'//label[@class[contains(.,"selected")] and(text()="2. PAYMENT METHOD")]').is_displayed()
     print(f'ORDER PAYMENT > 2. PAYMENT METHOD page is displayed')
 
-    rndpay = 2  # random.randint(1, 2)
+    rndpay = 1  # random.randint(1, 2)
 
     if rndpay == 1:
-        # ------------------------- MASTER CREDIT PAY ---------------------------------------
+        print(f'\n-------------------~* SAFEPAY PAYMENT  *~-------------------')
+        # safe pay details
+        driver.find_element(By.NAME, 'safepay').click()
+        sleep(0.25)
+        driver.find_element(By.NAME, 'safepay_username').send_keys('spusername')
+        sleep(0.25)
+        driver.find_element(By.NAME, 'safepay_password').send_keys('Pass1')
+        sleep(0.25)
+        # uncheck save checkbox if checked
+        save_safepay = driver.find_element(By.NAME, 'save_safepay').is_selected()
+        print(f'Safepay save checkbox selected: {save_safepay}')
+        if save_safepay:
+            driver.find_element(By.NAME, 'save_safepay').click()
+            save_safepay = driver.find_element(By.NAME, 'save_safepay').is_selected()
+            print(f'Safepay save checkbox selected: {save_safepay}')
+            ssh('payment_completed')
+        driver.find_element(By.ID, 'pay_now_btn_SAFEPAY').click()
+        # ------------------------- END SAFEPAY PAY ---------------------------------------
+
+    if rndpay == 2:
+        print(f'\n-------------------~* MASTER CREDIT PAYMENT  *~-------------------')
         driver.find_element(By.NAME, 'masterCredit').click()
         sleep(1)
         driver.find_element(By.ID, 'creditCard').send_keys(locators.credit_card_num)
@@ -225,6 +249,7 @@ def checkout_shopping_cart():
         driver.find_element(By.NAME, 'cardholder_name').send_keys(locators.full_name)
         sleep(0.5)
         save_master_credit = driver.find_element(By.NAME, 'save_master_credit').is_selected()
+        # uncheck save checkbox if checked
         print(f'MasterCredit save checkbox selected: {save_master_credit}')
         if save_master_credit:
             driver.find_element(By.NAME, 'save_master_credit').click()
@@ -232,26 +257,9 @@ def checkout_shopping_cart():
             print(f'MasterCredit save checkbox selected: {save_master_credit}')
 
         driver.find_element(By.ID, 'pay_now_btn_ManualPayment').click()
-        breakpoint()
+        #breakpoint()
         # ------------------------- END MASTER CREDIT ---------------------------------------
-    if rndpay == 2:
-        # ------------------------- SAFEPAY PAYMENT ---------------------------------------
-        # safe pay details
-        driver.find_element(By.NAME, 'safepay').click()
-        sleep(0.25)
-        driver.find_element(By.NAME, 'safepay_username').send_keys('spusername')
-        sleep(0.25)
-        driver.find_element(By.NAME, 'safepay_password').send_keys('Pass1')
-        sleep(0.25)
-        spcheck = driver.find_element(By.NAME, 'save_safepay').is_selected()
-        print(f'Safepay save checkbox selected: {spcheck}')
-        if spcheck:
-            driver.find_element(By.NAME, 'save_safepay').click()
-            spcheck = driver.find_element(By.NAME, 'save_safepay').is_selected()
-            print(f'Safepay save checkbox selected: {spcheck}')
 
-        driver.find_element(By.ID, 'pay_now_btn_SAFEPAY').click()
-        # ------------------------- END SAFEPAY PAY ---------------------------------------
     sleep(2)
     print(f'\n------------------------~* ORDER CONFIRMATION  *~------------------------')
     thank_you_msg = 'Thank you for buying with Advantage'
@@ -261,6 +269,7 @@ def checkout_shopping_cart():
     locators.tracking_number = driver.find_element(By.ID, 'trackingNumberLabel').text
     print(f'Order Number: {locators.order_number}')
     print(f'Tracking Number: {locators.tracking_number}')
+    ssh('new_order_confirmation')
 
 
 def validate_order():
@@ -276,12 +285,14 @@ def validate_order():
     pname = driver.find_element(By.XPATH, '//tr[2]/td[4]/span').text
     assert pname.upper() in locators.product_name
     print(f'Product name: {pname} is displayed')
+    ssh('validate_order_page')
     print(f'\n------------------------~* DELETE ORDER *~------------------------')
     driver.find_element(By.XPATH, f"//*[contains(.,'{locators.order_number}')]/../td/span/a[text()='REMOVE']").click()
     sleep(1)
     driver.find_element(By.ID, 'confBtn_1').click()
     sleep(1)
     assert driver.find_element(By.XPATH, '//label[contains(.,"No orders")]')
+    ssh('delete_order')
     print(f'Order {locators.order_number} is deleted')
     sleep(1)
 
@@ -300,16 +311,20 @@ def logger(action):
     log_file.close()
 
 
+def ssh(filename):
+    driver.save_screenshot(locators.res_dir_name + '/' + filename + '.png')
+
+
 setup()
 create_new_user()
 checkout_shopping_cart()
-#log_out()
-# log_in()
-# validate_user_login()
-# validate_order()
 log_out()
-checkout_shopping_cart()
+log_in()
+validate_user_login()
 validate_order()
+# log_out()
+# checkout_shopping_cart()
+# validate_order()
 # log_in()
 delete_account()
 log_in()

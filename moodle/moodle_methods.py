@@ -272,7 +272,7 @@ def delete_user():
         driver.find_element(By.XPATH, "//button[text()='Delete']").click()  # option 1
         # driver.find_element(By.XPATH, "//*[contains(text(), 'Delete')]").click() # option 2 * means any tag
         # driver.find_element(By.XPATH, '//i[@title="Delete"]').click() # option 3# only for i html tag
-        print(f'--- User {locators.email}, System ID {user_system_id} is deleted  at:{datetime.datetime.now()} --- ')
+        print(f'--- User {locators.email}, System ID {user_system_id} is deleted --- ')
         logger('deleted')
     else:
         print(f'--- User {locators.email} not found --- ')

@@ -17,13 +17,14 @@ moodle_users_main_page_title = 'SQA: Administration: Users: Accounts: Browse lis
 admin_username = 'tkuser'
 admin_password='Moodle!123'
 
-new_username = fake.user_name()
+
 new_password = fake.password()
 first_name = fake.first_name()
 last_name = fake.last_name()
 middle_name = fake.first_name()
 full_name = f'{first_name} {last_name}'
-email = fake.email()
+new_username = f'{full_name.replace(" ", "").lower()}{fake.pyint(111,999)}'
+email = f'{new_username}@{fake.free_email_domain()}'
 
 list_of_insterests = [fake.job(), fake.job(), fake.job()]
 
@@ -36,9 +37,9 @@ pic_desc = f'Image submitted by {full_name}'
 webpage = fake.url()
 icq_num = fake.pyint(111111,999999)
 id_skype = new_username
-id_aim = f'{new_username}{fake.pyint(111,999)}'
-id_yahoo = fake.user_name()
-id_msn = fake.user_name()
+id_aim = f'{new_username}_aim'
+id_yahoo = f'{new_username}_y'
+id_msn = f'{new_username}_msn'
 id_idnumber = fake.pyint(1111111,9999999)
 id_institution = fake.company()
 id_department = fake.catch_phrase()
