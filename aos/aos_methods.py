@@ -71,6 +71,7 @@ def validate_user_login():
         print(f'Expected Username: "{locators.user_name}" is not displayed!')
     ssh('validate_user_login')
 
+
 def log_out():
     print(f'\n------------------------~* LOGOUT  *~------------------------')
     sleep(2)
@@ -208,7 +209,7 @@ def checkout_shopping_cart():
     assert driver.find_element(By.XPATH, f'//H3[contains(.,"ORDER PAYMENT")]').is_displayed()
     assert driver.find_element(By.XPATH, f'//label[@class[contains(.,"selected")] and(text()="1. SHIPPING DETAILS ")]').is_displayed()
     print(f'ORDER PAYMENT > 1. SHIPPING DETAILS page is displayed')
-    sleep(3)
+    sleep(5)
     assert driver.find_element(By.XPATH, f'//label[contains(.,"{locators.full_name}")]').is_displayed()
     print(f'Customer Name: "{locators.full_name}" is displayed\n')
     sleep(2)

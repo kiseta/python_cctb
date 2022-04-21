@@ -27,7 +27,7 @@ driver = webdriver.Chrome(service = s)
 #driver = webdriver.Chrome('../../chromedriver.exe')
 
 
-# ------------------ AOS WEB ELEMENTS ------------------------------
+# ------------------ DEMOBLAZE WEB ELEMENTS ------------------------------
 app = 'DEMOBLAZE'
 base_url = 'https://www.demoblaze.com/index.html'
 home_page_title = "STORE"

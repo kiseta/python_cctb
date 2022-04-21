@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/python_cctb.iml" filepath="$PROJECT_DIR$/.idea/python_cctb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/_cctb.iml" filepath="$PROJECT_DIR$/.idea/_cctb.iml" />
     </modules>
   </component>
 </project>
